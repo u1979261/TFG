@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
         _gravityAcceleration = _gravity * _gravity;
         _gravityAcceleration *= Time.deltaTime;
-        // Initialize Input System Actions
+        
         _playerInput = new InputSystem_Actions();
     }
 
@@ -85,7 +85,6 @@ public class Player : MonoBehaviour
     {
         Vector3 moveDirection = new Vector3(_movementInput.x, 0, _movementInput.y);
 
-        // Determine movement speed
         float speed = _walkSpeed;
         if (_isRunning && !_isCrouching)
         {
@@ -96,13 +95,11 @@ public class Player : MonoBehaviour
             speed = _crouchSpeed;
         }
 
-        // Apply movement
         moveDirection = transform.TransformDirection(moveDirection) * speed;
 
         // Apply crouch and height transitions
         HandleCrouch();
-
-        // Handle gravity and jumping
+        //Jumping
         if (_player.isGrounded)
         {
             _yVelocity = 0;
@@ -116,10 +113,7 @@ public class Player : MonoBehaviour
         {
             _yVelocity -= _gravityAcceleration;
         }
-
         moveDirection.y = _yVelocity;
-
-        // Move the player
         _player.Move(moveDirection * Time.deltaTime);
     }
 
