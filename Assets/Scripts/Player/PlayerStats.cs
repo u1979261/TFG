@@ -74,40 +74,40 @@ public class PlayerStats : MonoBehaviour
 
         if (hunger <= 0) {
             //EVERY 3 SEC//
-            //if (Time.time % 3f < Time.deltaTime)
-            //{
-            //    health -= hungerDamage;
-            //}
-            health -= hungerDamage * Time.deltaTime;
+            if (Time.time % 10f < Time.deltaTime)
+            {
+                health -= hungerDamage;
+            }
+            //health -= hungerDamage * Time.deltaTime;
         }
         if (thirst <= 0)
         {
             //EVERY 3 SEC//
-            //if (Time.time % 3f < Time.deltaTime)
-            //{
-            //    health -= thirstDamage;
-            //}
-            health -= thirstDamage * Time.deltaTime;
+            if (Time.time % 10f < Time.deltaTime)
+            {
+                health -= thirstDamage;
+            }
+            //health -= thirstDamage * Time.deltaTime;
         }
 
         //--DAMAGES--//
         if(hunger > 0)
         {
             //EVERY 5 SEC//
-            //if (Time.time % 5f < Time.deltaTime)
-            //{
-            //    hunger -= hungerReduction
-            //}
-            hunger -= hungerReduction * Time.deltaTime;
+            if (Time.time % 60f < Time.deltaTime)
+            {
+                hunger -= hungerReduction;
+            }
+            //hunger -= hungerReduction * Time.deltaTime;
         }
         if (thirst > 0)
         {
             //EVERY 5 SEC//
-            //if (Time.time % 5f < Time.deltaTime)
-            //{
-            //    hunger -= hungerReduction
-            //}
-            thirst -= thirstReduction * Time.deltaTime;
+            if (Time.time % 60f < Time.deltaTime)
+            {
+                thirst -= thirstReduction;
+            }
+            //thirst -= thirstReduction * Time.deltaTime;
         }
 
     }
