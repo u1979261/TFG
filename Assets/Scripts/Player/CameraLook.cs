@@ -98,18 +98,11 @@ public class CameraLook : MonoBehaviour
         if (!canMove)
             return;
 
-
-
-
         x = Input.GetAxisRaw("Mouse X") * sensitivity * Time.deltaTime;
         y = -Input.GetAxisRaw("Mouse Y") * sensitivity * Time.deltaTime;
 
-
-
         verticalRot += y;
         horizontalRot += x;
-
-
 
         verticalRot = Mathf.Clamp(verticalRot, verticalTopLimit, verticalBottomLimit);
         transform.localRotation = Quaternion.Euler(verticalRot, 0, 0);
