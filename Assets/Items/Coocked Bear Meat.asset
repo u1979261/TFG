@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
-  m_Name: Stone
+  m_Name: Coocked Bear Meat
   m_EditorClassIdentifier: 
-  itemType: 0
-  itemIcon: {fileID: 21300000, guid: 0345a527819a4cb47a9c3eaec33d1396, type: 3}
-  itemName: Stones
-  itemDescription: Stones.
+  itemType: 1
+  itemIcon: {fileID: 21300000, guid: 1f333a2498f5ae942b783bc19c29da55, type: 3}
+  itemName: Cooked Bear Meat
+  itemDescription: Delicious Bear Meat, Eating it will restore some health, hunger,
+    and thirst.
   isStackable: 1
-  maxStack: 10
+  maxStack: 16
   damage: 0
-  healthStats: 10
+  healthStats: 5
   thirstStats: 10
   hungerStats: 10
