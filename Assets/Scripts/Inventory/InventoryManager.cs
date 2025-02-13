@@ -20,7 +20,7 @@ public class InventoryManager : MonoBehaviour
 
 
 
-    private Slot[] inventorySlots;
+    [HideInInspector] public Slot[] inventorySlots;
     private Slot[] hotBarSlots;
 
     private void Start()
@@ -278,5 +278,125 @@ public class InventoryManager : MonoBehaviour
        }
        from.UpdateSlot();
        to.UpdateSlot();
+    }
+
+    public void AddItem(ItemSO data, int stackSize)
+    {
+        if (data.isStackable)
+        {
+            Slot stackableSlot = null;
+
+            // TRY FINDING STACKABLE SLOT
+            for (int i = 0; i < inventorySlots.Length; i++)
+            {
+                if (!inventorySlots[i].isEmpty)
+                {
+                    if (inventorySlots[i].data == data && inventorySlots[i].stackSize < data.maxStack)
+                    {
+                        stackableSlot = inventorySlots[i];
+                        break;
+                    }
+
+                }
+            }
+
+            if (stackableSlot != null)
+            {
+
+                // IF IT CANNOT FIT THE PICKED UP AMOUNT
+                if (stackableSlot.stackSize + stackSize > data.maxStack)
+                {
+                    int amountLeft = (stackableSlot.stackSize + stackSize) - data.maxStack;
+
+
+
+                    // ADD IT TO THE STACKABLE SLOT
+                    stackableSlot.AddItemToSlot(data, data.maxStack);
+
+                    // TRY FIND A NEW EMPTY STACK
+                    for (int i = 0; i < inventorySlots.Length; i++)
+                    {
+                        if (inventorySlots[i].isEmpty)
+                        {
+                            inventorySlots[i].AddItemToSlot(data, amountLeft);
+                            inventorySlots[i].UpdateSlot();
+
+                            break;
+                        }
+                    }
+                }
+                // IF IT CAN FIT THE PICKED UP AMOUNT
+                else
+                {
+                    stackableSlot.AddStackAmount(stackSize);
+                }
+
+                stackableSlot.UpdateSlot();
+            }
+            else
+            {
+                Slot emptySlot = null;
+
+
+                // FIND EMPTY SLOT
+                for (int i = 0; i < inventorySlots.Length; i++)
+                {
+                    if (inventorySlots[i].isEmpty)
+                    {
+                        emptySlot = inventorySlots[i];
+                        break;
+                    }
+                }
+
+                // IF WE HAVE AN EMPTY SLOT THAN ADD THE ITEM
+                if (emptySlot != null)
+                {
+                    emptySlot.AddItemToSlot(data,stackSize);
+                    emptySlot.UpdateSlot();
+                }
+                else
+                {
+                    DropItem(data, stackSize);
+                }
+            }
+
+        }
+        else
+        {
+            Slot emptySlot = null;
+
+
+            // FIND EMPTY SLOT
+            for (int i = 0; i < inventorySlots.Length; i++)
+            {
+                if (inventorySlots[i].isEmpty)
+                {
+                    emptySlot = inventorySlots[i];
+                    break;
+                }
+            }
+
+            // IF WE HAVE AN EMPTY SLOT THAN ADD THE ITEM
+            if (emptySlot != null)
+            {
+                emptySlot.AddItemToSlot(data, stackSize);
+                emptySlot.UpdateSlot();
+            }
+            else
+            {
+                DropItem(data, stackSize);
+            }
+
+        }
+    }
+
+    public void DropItem(ItemSO data, int stackSize)
+    {
+        Pickup pickup = Instantiate(dropModel, dropPos).AddComponent<Pickup>();
+        pickup.transform.position = dropPos.position;
+        pickup.transform.SetParent(null);
+
+        pickup.data = data;
+        pickup.stackSize = stackSize;
     }
 }

@@ -17,6 +17,6 @@ MonoBehaviour:
   requirements:
   - {fileID: 11400000, guid: d3d10ae7a73179141bf132e600e67fff, type: 2}
   - {fileID: 11400000, guid: 093393ff040b6504aad1f27857032025, type: 2}
-  craftingTime: 20
+  craftingTime: 10
   output: {fileID: 11400000, guid: 6fa74e0df013f6242bc5bd02ba349ce5, type: 2}
   outputAmount: 1

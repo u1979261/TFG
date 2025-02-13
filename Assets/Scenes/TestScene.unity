@@ -1474,6 +1474,7 @@ MonoBehaviour:
   slotTemplate: {fileID: 6090283325771660585, guid: 39b4265fe100094438b2175e14c2d822, type: 3}
   contentHolder: {fileID: 1594977073}
   hotBarContentHolder: {fileID: 148117103}
+  inventorySlots: []
 --- !u!114 &835251933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2226,7 +2227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 1368f086f934d034693461b772002dd9, type: 2}
-  stackSize: 10
+  stackSize: 100
 --- !u!1 &1061540905
 GameObject:
   m_ObjectHideFlags: 0
@@ -3484,8 +3485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9b58951d4dac54a87cbf94e5c15d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 1368f086f934d034693461b772002dd9, type: 2}
-  stackSize: 1
+  data: {fileID: 11400000, guid: a6b39b0adf7d7224dbfe388af396a962, type: 2}
+  stackSize: 300
 --- !u!1 &1695284774
 GameObject:
   m_ObjectHideFlags: 0
@@ -3946,6 +3947,7 @@ MonoBehaviour:
   recipies:
   - {fileID: 11400000, guid: a746fa87b0ed13a4d9e83e64553cf617, type: 2}
   contentHolder: {fileID: 403214573}
+  recipieInCraft: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
