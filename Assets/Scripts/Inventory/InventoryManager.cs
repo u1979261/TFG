@@ -9,25 +9,54 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Invetory Settings")]
     public int inventorySize = 24;
+    public int hotBarSize = 6;
 
     [Header("Refs")]
     public GameObject dropModel;
     public Transform dropPos;
     public GameObject slotTemplate;
     public Transform contentHolder;
+    public Transform hotBarContentHolder;
 
 
 
     private Slot[] inventorySlots;
+    private Slot[] hotBarSlots;
 
     private void Start()
     {
         _playerInput = new InputSystem_Actions();
         _playerInput.Player.Enable();
+        GenerateSlotsHotBar();
         GenerateSlots();
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            hotBarSlots[0].Use();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            hotBarSlots[1].Use();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            hotBarSlots[2].Use();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            hotBarSlots[3].Use();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            hotBarSlots[4].Use();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            hotBarSlots[5].Use();
+        }
+
         if (_playerInput.Player.Inventory.WasPressedThisFrame())
         {
             opened = !opened;
@@ -56,6 +85,20 @@ public class InventoryManager : MonoBehaviour
             inventorySlots_.Add(slot);
         }
         inventorySlots = inventorySlots_.ToArray();
+    }
+    private void GenerateSlotsHotBar()
+    {
+        List<Slot> inventorySlots_ = new List<Slot>();
+        List<Slot> hotBarList = new List<Slot>();
+        for (int i = 0; i < hotBarSize; i++)
+        {
+            Slot slot = Instantiate(slotTemplate, hotBarContentHolder).GetComponent<Slot>();
+
+            inventorySlots_.Add(slot);
+            hotBarList.Add(slot);
+        }
+        inventorySlots = inventorySlots_.ToArray();
+        hotBarSlots = hotBarList.ToArray();
     }
     public void AddItem(Pickup pickUp)
     {

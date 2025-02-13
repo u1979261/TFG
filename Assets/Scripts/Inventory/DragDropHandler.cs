@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class DragDropHandler : MonoBehaviour
 {
     [HideInInspector] public bool isDragging;
-    public Slot slotFrom;
-    public Slot slotTo;
+    [HideInInspector] public Slot slotFrom;
+    [HideInInspector] public Slot slotTo;
     [Space]
     public Image dragDropIcon;
 

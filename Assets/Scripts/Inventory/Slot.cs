@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.EventSystems;
+using System.Collections.Concurrent;
 public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private DragDropHandler dragDropHandler;
@@ -21,12 +22,23 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
 
     private void Start()
     {
-        dragDropHandler = GetComponentInParent<DragDropHandler>();
-        inventory = GetComponentInParent<InventoryManager>();
+        dragDropHandler = GetComponentInParent<Player>().GetComponentInChildren<DragDropHandler>();
+        inventory = GetComponentInParent<Player>().GetComponentInChildren<InventoryManager>();
         UpdateSlot();
     }
     public void UpdateSlot()
     {
+        if (data != null)
+        {
+            if (data.itemType != ItemSO.ItemType.Weapon)
+            {
+                if (stackSize <= 0)
+                {
+                    data = null;
+                }
+            }
+        }
+
         if (data == null)
         {
             _isEmpty = true;
@@ -110,5 +122,25 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         {
             dragDropHandler.slotTo = null;
         }
+    }
+
+    public void Use()
+    {
+        if (data == null) return;
+        if (data.itemType == ItemSO.ItemType.Consumable)
+        {
+            Consume();
+        }
+    }
+
+    public void Consume()
+    {
+        PlayerStats stats = GetComponentInParent<PlayerStats>();
+        stats.health += data.healthStats;
+        stats.hunger += data.hungerStats;
+        stats.thirst += data.thirstStats;
+
+        stackSize--;
+        UpdateSlot();
     }
 }

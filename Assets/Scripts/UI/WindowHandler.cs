@@ -3,6 +3,7 @@ using UnityEngine;
 public class WindowHandler : MonoBehaviour
 {
     [HideInInspector] public InventoryManager inventory;
+    [HideInInspector] public CraftingManager crafting;
     public bool isOpen;
 
     private CameraLook _camera;
@@ -11,6 +12,7 @@ public class WindowHandler : MonoBehaviour
     {
         _camera = GetComponentInChildren<CameraLook>();
         inventory = GetComponentInChildren<InventoryManager>();
+        crafting = GetComponentInChildren<CraftingManager>();
     }
 
     private void Update()
