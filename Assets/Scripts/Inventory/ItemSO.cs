@@ -18,7 +18,12 @@ public class ItemSO : ScriptableObject
     public int maxStack = 1;
 
     [Header("Weapon")]
-    public float damage;
+    public float damage = 15f;
+    public float range = 300f;
+
+    [Space]
+    public int magSize = 20;
+    public float fireRate = 0.1f;
 
     [Header("Consumable")]
     public float healthStats = 10f;

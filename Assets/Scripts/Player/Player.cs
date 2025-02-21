@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private float _gravityAcceleration;
 
     private Vector2 _movementInput;
-    private bool _isRunning;
+    [HideInInspector] public bool _isRunning;
     private bool _isCrouching;
     private bool _jumpPressed;
 

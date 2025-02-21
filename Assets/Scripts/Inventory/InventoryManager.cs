@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class InventoryManager : MonoBehaviour
 {
+    public Weapon[] weapons; 
+
     public bool opened;
     private InputSystem_Actions _playerInput;
 
