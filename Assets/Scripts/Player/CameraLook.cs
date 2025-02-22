@@ -129,7 +129,7 @@ public class CameraLook : MonoBehaviour
         hasReachedVerticalRecoilPosition = false;
         hasReachedHorizontalRecoilPosition = false;
 
-        Debug.LogWarning("Horizontal Recoil is : " + horizontalRecoilPoint);
+        //Debug.LogWarning("Horizontal Recoil is : " + horizontalRecoilPoint);
 
         //player.Rotate(Vector3.up * Random.Range(-horizontal, horizontal));
 

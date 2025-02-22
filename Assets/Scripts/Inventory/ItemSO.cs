@@ -20,10 +20,24 @@ public class ItemSO : ScriptableObject
     [Header("Weapon")]
     public float damage = 15f;
     public float range = 300f;
+    [Space]
+    public float horizontalRecoil;
+    public float minVerticalRecoil;
+    public float maxVerticalRecoil;
 
     [Space]
     public int magSize = 20;
     public float fireRate = 0.1f;
+
+
+    [Space]
+    [Space]
+    [Space]
+
+    public AudioClip shootSound;
+    public AudioClip reloadSound;
+    public AudioClip takeoutSound;
+    public AudioClip emptySound;
 
     [Header("Consumable")]
     public float healthStats = 10f;
