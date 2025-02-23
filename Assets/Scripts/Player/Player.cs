@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     private Vector2 _movementInput;
     [HideInInspector] public bool _isRunning;
+    [HideInInspector] public bool running;
     private bool _isCrouching;
     private bool _jumpPressed;
 
@@ -85,10 +86,16 @@ public class Player : MonoBehaviour
     {
         Vector3 moveDirection = new Vector3(_movementInput.x, 0, _movementInput.y);
 
+        // Determinar si el jugador se está moviendo
+        bool isMoving = _movementInput.sqrMagnitude > 0;
+
+        running = false;
         float speed = _walkSpeed;
-        if (_isRunning && !_isCrouching)
+
+        if (_isRunning && isMoving && !_isCrouching) // Solo correr si se mueve
         {
             speed = _runSpeed;
+            running = true;
         }
         else if (_isCrouching)
         {
@@ -97,9 +104,10 @@ public class Player : MonoBehaviour
 
         moveDirection = transform.TransformDirection(moveDirection) * speed;
 
-        // Apply crouch and height transitions
+        // Aplicar transición de agachado
         HandleCrouch();
-        //Jumping
+
+        // Salto y gravedad
         if (_player.isGrounded)
         {
             _yVelocity = 0;
@@ -114,6 +122,7 @@ public class Player : MonoBehaviour
             _yVelocity -= _gravityAcceleration;
         }
         moveDirection.y = _yVelocity;
+
         _player.Move(moveDirection * Time.deltaTime);
     }
 

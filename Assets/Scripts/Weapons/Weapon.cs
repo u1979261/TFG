@@ -5,6 +5,7 @@ public class Weapon : MonoBehaviour
     
     [HideInInspector] public Animator anim;
     [HideInInspector] public Slot slotEquippedOn;
+    [HideInInspector] public WindowHandler windowHandler;
 
     private Player player;
     private AudioSource audioS;
@@ -51,14 +52,14 @@ public class Weapon : MonoBehaviour
             UpdateAiming();
             if (isAutomatic)
             {
-                if (Input.GetButton("Fire1"))
+                if (Input.GetMouseButton(0) && windowHandler.isOpen)
                 {
                     Shoot();
                 }
             }
             else
             {
-                if (Input.GetButtonDown("Fire1"))
+                if (Input.GetMouseButton(0) && windowHandler.isOpen)
                 {
                     Shoot();
                 }
@@ -74,7 +75,7 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
-        if(currentFireRate<fireRate || isReloading || hasTakenOut || player._isRunning || slotEquippedOn.stackSize <= 0)
+        if(currentFireRate<fireRate || isReloading || hasTakenOut || player.running || slotEquippedOn.stackSize <= 0)
         {
             return;
         }
@@ -97,7 +98,7 @@ public class Weapon : MonoBehaviour
     }
     public void UpdateAiming()
     {
-        if (Input.GetButton("Fire2") && !player._isRunning)
+        if (Input.GetButton("Fire2") && !player.running)
         {
             transform.localPosition = Vector3.Slerp(transform.localPosition, aimPos, aimSpeed * Time.deltaTime);
         }
@@ -111,7 +112,7 @@ public class Weapon : MonoBehaviour
     
     public void UpdateAnimations()
     {
-        anim.SetBool("Running", player._isRunning);
+        anim.SetBool("Running", player.running);
     }
 
     public void Equip(Slot slot)

@@ -1363,7 +1363,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   slotEquippedOn: {fileID: 0}
-  weaponData: {fileID: 0}
+  windowHandler: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: a5fcdd6bd1922a8479c0c5dcfb4457d5, type: 2}
   isAutomatic: 0
   shootPoint: {fileID: 330585546}
   shootableLayers:
@@ -1488,7 +1489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9b58951d4dac54a87cbf94e5c15d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 7fff584dd640eea4a928b5c8c2b0135d, type: 2}
+  data: {fileID: 11400000, guid: a5fcdd6bd1922a8479c0c5dcfb4457d5, type: 2}
   stackSize: 7
 --- !u!1 &813510606
 GameObject:
@@ -2430,7 +2431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 8488e0f9b7e04ca469837e15a7d6340c, type: 2}
-  stackSize: 30
+  stackSize: 100000000
 --- !u!1 &1061540905
 GameObject:
   m_ObjectHideFlags: 0
@@ -2849,6 +2850,7 @@ MonoBehaviour:
   _crouchTransitionSpeed: 6
   _gravity: -6.5
   _isRunning: 0
+  running: 0
 --- !u!143 &1419636782
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3979,6 +3981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   slotEquippedOn: {fileID: 0}
+  windowHandler: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 728e175b585fb42469e6d003694598f2, type: 2}
   isAutomatic: 0
   shootPoint: {fileID: 330585546}
@@ -4239,6 +4242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   slotEquippedOn: {fileID: 0}
+  windowHandler: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 8488e0f9b7e04ca469837e15a7d6340c, type: 2}
   isAutomatic: 1
   shootPoint: {fileID: 330585546}
