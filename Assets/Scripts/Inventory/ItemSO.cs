@@ -20,13 +20,24 @@ public class ItemSO : ScriptableObject
     [Header("Weapon")]
     public float damage = 15f;
     public float range = 300f;
+    
     [Space]
     public float horizontalRecoil;
     public float minVerticalRecoil;
     public float maxVerticalRecoil;
+    [Space]
+    [Space]
+    public float hipSpread = 0.04f;
+    public float aimSpread = 0;
+    public float zoomFOV = 60f;
+
+    [Space]
+    public bool shotgunFire;
+    public int pelletsPerShot = 8;
 
     [Space]
     public int magSize = 20;
+    public ItemSO bulletData;
     public float fireRate = 0.1f;
 
 

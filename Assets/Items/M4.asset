@@ -23,11 +23,17 @@ MonoBehaviour:
   horizontalRecoil: 0.1
   minVerticalRecoil: 1.5
   maxVerticalRecoil: 3
+  hipSpread: 0.04
+  aimSpread: 0
+  zoomFOV: 50
+  shotgunFire: 0
+  pelletsPerShot: 8
   magSize: 20
+  bulletData: {fileID: 11400000, guid: 97e7e68a7abc46240b0c674080087b63, type: 2}
   fireRate: 0.1
-  shootSound: {fileID: 0}
-  reloadSound: {fileID: 0}
-  takeoutSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: e3c78695717d6974ab07bd2ae9545193, type: 3}
+  reloadSound: {fileID: 8300000, guid: 11bc9fffe26f8314ca643fb053434dd4, type: 3}
+  takeoutSound: {fileID: 8300000, guid: e2b583eb166516540ac01310c452ee58, type: 3}
   emptySound: {fileID: 0}
   healthStats: 0
   thirstStats: 0

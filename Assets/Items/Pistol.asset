@@ -23,7 +23,13 @@ MonoBehaviour:
   horizontalRecoil: 3
   minVerticalRecoil: 2
   maxVerticalRecoil: 4
+  hipSpread: 0.04
+  aimSpread: 0
+  zoomFOV: 45
+  shotgunFire: 0
+  pelletsPerShot: 8
   magSize: 15
+  bulletData: {fileID: 0}
   fireRate: 0.1
   shootSound: {fileID: 0}
   reloadSound: {fileID: 0}
