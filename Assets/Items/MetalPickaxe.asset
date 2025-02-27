@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
+  m_Name: MetalPickaxe
+  m_EditorClassIdentifier: 
+  itemType: 3
+  itemIcon: {fileID: 21300000, guid: 6e9399548222bf64e86bc10e8b6c32e7, type: 3}
+  itemName: Metal Pick Axe
+  itemDescription: A Pickaxe, useful for gathering ore from rocks.
+  specificDropModel: {fileID: 681928473021325580, guid: 295d0b191ceb23b40a97fa58881556f4, type: 3}
+  isStackable: 0
+  maxStack: 1
+  damage: 20
+  range: 1.5
+  horizontalRecoil: 0
+  minVerticalRecoil: 0
+  maxVerticalRecoil: 0
+  hipSpread: 0
+  aimSpread: 0
+  zoomFOV: 0
+  shotgunFire: 0
+  pelletsPerShot: 0
+  magSize: 30
+  bulletData: {fileID: 0}
+  fireRate: 0.3
+  shootSound: {fileID: 0}
+  reloadSound: {fileID: 0}
+  takeoutSound: {fileID: 0}
+  emptySound: {fileID: 0}
+  healthStats: 0
+  thirstStats: 0
+  hungerStats: 0

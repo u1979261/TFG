@@ -1,8 +1,10 @@
+using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    
+
     [HideInInspector] public Animator anim;
     [HideInInspector] public Slot slotEquippedOn;
     [HideInInspector] public WindowHandler windowHandler;
@@ -46,18 +48,19 @@ public class Weapon : MonoBehaviour
         UpdateAnimations();
         if (weaponData.itemType == ItemSO.ItemType.Weapon)
         {
-            if (currentFireRate < fireRate) 
+            if (currentFireRate < fireRate)
             {
                 currentFireRate += Time.deltaTime;
             }
 
-            if (Input.GetKeyDown(KeyCode.R)) 
+            if (Input.GetKeyDown(KeyCode.R) && !windowHandler.isOpen)
             {
                 StartReload();
             }
 
 
             UpdateAiming();
+
             if (isAutomatic)
             {
                 if (Input.GetMouseButton(0) && !windowHandler.isOpen)
@@ -89,17 +92,24 @@ public class Weapon : MonoBehaviour
         }
         else if (weaponData.itemType == ItemSO.ItemType.MeleeWeapon)
         {
-
+            if (currentFireRate < fireRate)
+            {
+                currentFireRate += Time.deltaTime;
+            }
+            if (Input.GetMouseButton(0) && !windowHandler.isOpen)
+            {
+                Swing();
+            }
         }
     }
 
-    
 
-    //FIRE WEAPONS FUNCTIONS
+
+    #region FIRE WEAPONS FUNCTIONS
 
     public void Shoot()
     {
-        if(currentFireRate<fireRate || isReloading || !hasTakenOut || player.running || slotEquippedOn.stackSize <= 0)
+        if (currentFireRate < fireRate || isReloading || !hasTakenOut || player.running || slotEquippedOn.stackSize <= 0)
         {
             return;
         }
@@ -120,7 +130,7 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(shootPoint.position, shootDir, out hit, weaponData.range, shootableLayers))
         {
-            GameObject bulletHole = Instantiate(bulletPrefab, hit.point, Quaternion.FromToRotation(Vector3.up,hit.normal));
+            GameObject bulletHole = Instantiate(bulletPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
             Debug.Log($"Hitted : {hit.transform.name}");
         }
 
@@ -133,23 +143,59 @@ public class Weapon : MonoBehaviour
         slotEquippedOn.stackSize--;
         slotEquippedOn.UpdateSlot();
     }
+    public void ShootGunShoot()
+    {
+        if (currentFireRate < fireRate || isReloading || !hasTakenOut || player.running || slotEquippedOn.stackSize <= 0)
+        {
+            return;
+        }
+        for (int i = 0; i < weaponData.pelletsPerShot; i++)
+        {
+            RaycastHit hit;
+            Vector3 shootDir = shootPoint.forward;
+
+            if (isAiming)
+            {
+                shootDir.x += Random.Range(-weaponData.aimSpread, weaponData.aimSpread);
+                shootDir.y += Random.Range(-weaponData.aimSpread, weaponData.aimSpread);
+            }
+            else
+            {
+                shootDir.x += Random.Range(-weaponData.hipSpread, weaponData.hipSpread);
+                shootDir.y += Random.Range(-weaponData.hipSpread, weaponData.hipSpread);
+            }
+            if (Physics.Raycast(shootPoint.position, shootDir, out hit, weaponData.range, shootableLayers))
+            {
+                GameObject bulletHole = Instantiate(bulletPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+                Debug.Log($"Hitted : {hit.transform.name}");
+            }
+        }
+
+        anim.CrossFadeInFixedTime("Shoot_BASE", 0.015f);
+        GetComponentInParent<CameraLook>().RecoilCamera(Random.Range(weaponData.minVerticalRecoil, weaponData.maxVerticalRecoil), Random.Range(-weaponData.horizontalRecoil, weaponData.horizontalRecoil));
+        audioS.PlayOneShot(weaponData.shootSound);
+
+        currentFireRate = 0;
+        slotEquippedOn.stackSize--;
+        slotEquippedOn.UpdateSlot();
+    }
     public void UpdateAiming()
     {
-        if (Input.GetButton("Fire2") && !player.running && !isReloading)
+        if (Input.GetButton("Fire2") && !player.running && !isReloading && !windowHandler.isOpen)
         {
             transform.localPosition = Vector3.Slerp(transform.localPosition, aimPos, aimSpeed * Time.deltaTime);
             isAiming = true;
         }
-        else 
+        else
         {
             transform.localPosition = Vector3.Slerp(transform.localPosition, hipPos, aimSpeed * Time.deltaTime);
-            isAiming = false;   
+            isAiming = false;
         }
     }
 
     public void StartReload()
     {
-        if (isReloading || slotEquippedOn.stackSize >= weaponData.magSize || player.running || !hasTakenOut || !CheckForBullets(weaponData.bulletData,weaponData.magSize))
+        if (isReloading || slotEquippedOn.stackSize >= weaponData.magSize || player.running || !hasTakenOut || !CheckForBullets(weaponData.bulletData, weaponData.magSize) || windowHandler.isOpen)
             return;
 
         audioS.PlayOneShot(weaponData.reloadSound);
@@ -241,45 +287,54 @@ public class Weapon : MonoBehaviour
         slotEquippedOn.UpdateSlot();
 
     }
+    #endregion
 
-    public void ShootGunShoot()
+
+    #region Melee Weapon Functions
+    public void Swing()
     {
         if (currentFireRate < fireRate || isReloading || !hasTakenOut || player.running || slotEquippedOn.stackSize <= 0)
         {
             return;
         }
-        for (int i = 0; i < weaponData.pelletsPerShot; i++){
-            RaycastHit hit;
-            Vector3 shootDir = shootPoint.forward;
-
-            if (isAiming)
-            {
-                shootDir.x += Random.Range(-weaponData.aimSpread, weaponData.aimSpread);
-                shootDir.y += Random.Range(-weaponData.aimSpread, weaponData.aimSpread);
-            }
-            else
-            {
-                shootDir.x += Random.Range(-weaponData.hipSpread, weaponData.hipSpread);
-                shootDir.y += Random.Range(-weaponData.hipSpread, weaponData.hipSpread);
-            }
-            if (Physics.Raycast(shootPoint.position, shootDir, out hit, weaponData.range, shootableLayers))
-            {
-                GameObject bulletHole = Instantiate(bulletPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
-                Debug.Log($"Hitted : {hit.transform.name}");
-            }
-        }
-
-        anim.CrossFadeInFixedTime("Shoot_BASE", 0.015f);
-        GetComponentInParent<CameraLook>().RecoilCamera(Random.Range(weaponData.minVerticalRecoil, weaponData.maxVerticalRecoil), Random.Range(-weaponData.horizontalRecoil, weaponData.horizontalRecoil));
-        audioS.PlayOneShot(weaponData.shootSound);
+        anim.SetTrigger("Swing");
 
         currentFireRate = 0;
-        slotEquippedOn.stackSize--;
-        slotEquippedOn.UpdateSlot();
     }
 
-    ////////////
+    public void CheckForHit() 
+    {
+        RaycastHit hit;
+        if(Physics.SphereCast(shootPoint.position,0.5f,shootPoint.forward,out hit, weaponData.range, shootableLayers))
+        {
+           Hit();
+        }
+        else
+        {
+            Miss();
+        }
+    }
 
+    public void Miss()
+    {
+        anim.SetTrigger("Miss");
+    }
+
+    public void Hit()
+    {
+        anim.SetTrigger("Hit");
+    }   
+
+    public void ExecuteHit()
+    {
+        RaycastHit hit;
+        if (Physics.SphereCast(shootPoint.position, 0.2f, shootPoint.forward, out hit, weaponData.range, shootableLayers))
+        {
+
+        }
+    }
+
+    #endregion
     public void UpdateAnimations()
     {
         anim.SetBool("Running", player.running);

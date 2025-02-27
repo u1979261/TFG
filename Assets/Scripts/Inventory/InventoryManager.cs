@@ -223,7 +223,8 @@ public class InventoryManager : MonoBehaviour
     }
     public void DropItem(Slot slot)
     {
-        Pickup pickup = Instantiate(dropModel, dropPos).AddComponent<Pickup>();
+        GameObject modelToDrop = slot.data.specificDropModel != null ? slot.data.specificDropModel : dropModel;
+        Pickup pickup = Instantiate(modelToDrop, dropPos).AddComponent<Pickup>();
         pickup.transform.position = dropPos.position;
         pickup.transform.SetParent(null);
 
@@ -232,6 +233,7 @@ public class InventoryManager : MonoBehaviour
 
         slot.Clean();
     }
+
 
     public void DragDrop(Slot from, Slot to)
     {

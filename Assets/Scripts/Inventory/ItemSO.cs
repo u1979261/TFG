@@ -13,6 +13,9 @@ public class ItemSO : ScriptableObject
     public string itemName = "New item";
     public string itemDescription = "New item description";
 
+    [Header("Drop Settings")]
+    public GameObject specificDropModel;
+
     [Space]
     public bool isStackable;
     public int maxStack = 1;
