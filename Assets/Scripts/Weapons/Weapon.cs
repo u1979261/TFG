@@ -1,6 +1,3 @@
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
-using UnityEditor.ShortcutManagement;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -137,7 +134,7 @@ public class Weapon : MonoBehaviour
 
 
         anim.CrossFadeInFixedTime("Shoot_BASE", 0.015f);
-        GetComponentInParent<CameraLook>().RecoilCamera(Random.Range(weaponData.minVerticalRecoil, weaponData.maxVerticalRecoil), Random.Range(-weaponData.horizontalRecoil, weaponData.horizontalRecoil));
+        //GetComponentInParent<CameraLook>().RecoilCamera(Random.Range(-weaponData.horizontalRecoil, weaponData.horizontalRecoil), Random.Range(weaponData.minVerticalRecoil, weaponData.maxVerticalRecoil));
         audioS.PlayOneShot(weaponData.shootSound);
 
         currentFireRate = 0;

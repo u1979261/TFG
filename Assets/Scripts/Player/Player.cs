@@ -90,9 +90,8 @@ public class Player : MonoBehaviour
         _movementInput = context.ReadValue<Vector2>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        HandleMovement();
         if (crouching)
         {
             if (currentCrouchLenght < crouchStepLength)
@@ -102,27 +101,8 @@ public class Player : MonoBehaviour
             else
             {
                 currentCrouchLenght = 0;
-                AudioClip footstepSound = GetFootstepSound();
-                if (footstepSound != null)
-                {
-                    _audioSource.PlayOneShot(footstepSound);
-                }
-            }
-        }
-        else if (running)
-        {
-            if (currentRunLenght < runStepLength)
-            {
-                currentRunLenght += Time.deltaTime;
-            }
-            else
-            {
-                currentRunLenght = 0;
-                AudioClip footstepSound = GetFootstepSound();
-                if (footstepSound != null)
-                {
-                    _audioSource.PlayOneShot(footstepSound);
-                }
+                _audioSource.PlayOneShot(GetFootstepSound());
+                
             }
         }
         else if (walking)
@@ -134,13 +114,27 @@ public class Player : MonoBehaviour
             else
             {
                 currentWalkLenght = 0;
-                AudioClip footstepSound = GetFootstepSound();
-                if (footstepSound != null)
-                {
-                    _audioSource.PlayOneShot(footstepSound);
-                }
+                _audioSource.PlayOneShot(GetFootstepSound());
+
             }
         }
+        else if (running)
+        {
+            if (currentRunLenght < runStepLength)
+            {
+                currentRunLenght += Time.deltaTime;
+            }
+            else
+            {
+                currentRunLenght = 0;
+                _audioSource.PlayOneShot(GetFootstepSound());
+
+            }
+        }
+    }
+    private void FixedUpdate()
+    {
+        HandleMovement();
     }
 
     private void HandleMovement()
@@ -168,7 +162,7 @@ public class Player : MonoBehaviour
             walking = false;
             crouching = false;
         }
-        else if (_isCrouching)
+        else if (_isCrouching && isMoving)
         {
             running = false;
             crouching = true;
@@ -218,16 +212,23 @@ public class Player : MonoBehaviour
 
     public AudioClip GetFootstepSound()
     {
+        if (_player == null) return null;
+
         RaycastHit hit;
 
-        if (Physics.SphereCast(_player.center, 0.1f, Vector3.down, out hit, _player.bounds.extents.y))
+        // Primero, un Raycast para máxima precisión
+        if (Physics.Raycast(_player.transform.position, Vector3.down, out hit, _player.bounds.extents.y + 0.3f) ||
+            Physics.SphereCast(_player.transform.position, 0.2f, Vector3.down, out hit, _player.bounds.extents.y + 0.3f))
         {
-            Surface surface = hit.collider.GetComponent<Surface>();
-            if (surface != null && surface.surface.footstepSounds.Length > 0)
+            if (hit.transform.TryGetComponent(out Surface surface) &&
+                surface.surface.footstepSounds != null &&
+                surface.surface.footstepSounds.Length > 0)
             {
-                return surface.surface.footstepSounds[Random.Range(0, surface.surface.footstepSounds.Length)];
+                int i = Random.Range(0, surface.surface.footstepSounds.Length);
+                return surface.surface.footstepSounds[i];
             }
         }
         return null;
     }
+
 }

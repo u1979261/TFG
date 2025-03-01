@@ -1,6 +1,4 @@
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class InteractionHandler :MonoBehaviour
 {
