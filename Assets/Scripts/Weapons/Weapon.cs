@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
+using UnityEditor.ShortcutManagement;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -330,6 +331,14 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
         if (Physics.SphereCast(shootPoint.position, 0.2f, shootPoint.forward, out hit, weaponData.range, shootableLayers))
         {
+            ResourceObject resourceObj = hit.transform.GetComponent<ResourceObject>();
+            ResourceExtenssion resourceExt = hit.transform.GetComponent<ResourceExtenssion>();
+
+            if (resourceObj != null)
+                resourceObj.Recolect(weaponData, GetComponentInParent<WindowHandler>().inventory);
+
+            if (resourceExt != null)
+                resourceExt.Recolect(weaponData, GetComponentInParent<WindowHandler>().inventory);
 
         }
     }

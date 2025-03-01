@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
+  m_Name: M4
+  m_EditorClassIdentifier: 
+  itemType: 2
+  itemIcon: {fileID: 21300000, guid: c98384d19f52a3541b972485d828a1cb, type: 3}
+  itemName: M4
+  itemDescription: MATAAAAAAAAAR
+  specificDropModel: {fileID: 0}
+  isStackable: 0
+  maxStack: 1
+  toolMultiplier: 0
+  damage: 25
+  range: 200
+  horizontalRecoil: 0.1
+  minVerticalRecoil: 1.5
+  maxVerticalRecoil: 3
+  hipSpread: 0.04
+  aimSpread: 0
+  zoomFOV: 50
+  shotgunFire: 0
+  pelletsPerShot: 8
+  magSize: 20
+  bulletData: {fileID: 11400000, guid: 97e7e68a7abc46240b0c674080087b63, type: 2}
+  fireRate: 0.1
+  shootSound: {fileID: 8300000, guid: e3c78695717d6974ab07bd2ae9545193, type: 3}
+  reloadSound: {fileID: 8300000, guid: 11bc9fffe26f8314ca643fb053434dd4, type: 3}
+  takeoutSound: {fileID: 8300000, guid: e2b583eb166516540ac01310c452ee58, type: 3}
+  emptySound: {fileID: 0}
+  healthStats: 0
+  thirstStats: 0
+  hungerStats: 0

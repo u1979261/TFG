@@ -20,6 +20,9 @@ public class ItemSO : ScriptableObject
     public bool isStackable;
     public int maxStack = 1;
 
+    [Header("Tool Settings")]
+    public float toolMultiplier = 1f;
+
     [Header("Weapon")]
     public float damage = 15f;
     public float range = 300f;

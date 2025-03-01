@@ -18,17 +18,30 @@ public class Player : MonoBehaviour
     private float _gravityAcceleration;
 
     private Vector2 _movementInput;
-    [HideInInspector] public bool _isRunning;
-    [HideInInspector] public bool running;
+    private bool _isRunning;
     private bool _isCrouching;
     private bool _jumpPressed;
 
     private float _yVelocity;
+    [HideInInspector] public bool running;
+    [HideInInspector] public bool crouching;
+    [HideInInspector] public bool walking;
+
+    [Header("FootSteps")]
+    private AudioSource _audioSource;
+    public float runStepLength;
+    public float walkStepLength;
+    public float crouchStepLength;
+
+    private float currentCrouchLenght;
+    private float currentRunLenght;
+    private float currentWalkLenght;
 
     private void Awake()
     {
         _player = GetComponent<CharacterController>();
         _camera = GetComponentInChildren<CameraLook>();
+        _audioSource = GetComponent<AudioSource>();
 
         _gravityAcceleration = _gravity * _gravity;
         _gravityAcceleration *= Time.deltaTime;
@@ -80,6 +93,54 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         HandleMovement();
+        if (crouching)
+        {
+            if (currentCrouchLenght < crouchStepLength)
+            {
+                currentCrouchLenght += Time.deltaTime;
+            }
+            else
+            {
+                currentCrouchLenght = 0;
+                AudioClip footstepSound = GetFootstepSound();
+                if (footstepSound != null)
+                {
+                    _audioSource.PlayOneShot(footstepSound);
+                }
+            }
+        }
+        else if (running)
+        {
+            if (currentRunLenght < runStepLength)
+            {
+                currentRunLenght += Time.deltaTime;
+            }
+            else
+            {
+                currentRunLenght = 0;
+                AudioClip footstepSound = GetFootstepSound();
+                if (footstepSound != null)
+                {
+                    _audioSource.PlayOneShot(footstepSound);
+                }
+            }
+        }
+        else if (walking)
+        {
+            if (currentWalkLenght < walkStepLength)
+            {
+                currentWalkLenght += Time.deltaTime;
+            }
+            else
+            {
+                currentWalkLenght = 0;
+                AudioClip footstepSound = GetFootstepSound();
+                if (footstepSound != null)
+                {
+                    _audioSource.PlayOneShot(footstepSound);
+                }
+            }
+        }
     }
 
     private void HandleMovement()
@@ -88,17 +149,30 @@ public class Player : MonoBehaviour
 
         // Determinar si el jugador se está moviendo
         bool isMoving = _movementInput.sqrMagnitude > 0;
-
-        running = false;
+        if (!isMoving)
+        {
+            running = false;
+            crouching = false;
+            walking = false;
+        }
+        else {
+            running = false;
+            crouching = false;
+            walking = true;
+        }
         float speed = _walkSpeed;
-
         if (_isRunning && isMoving && !_isCrouching) // Solo correr si se mueve
         {
             speed = _runSpeed;
             running = true;
+            walking = false;
+            crouching = false;
         }
         else if (_isCrouching)
         {
+            running = false;
+            crouching = true;
+            walking = false;
             speed = _crouchSpeed;
         }
 
@@ -140,5 +214,20 @@ public class Player : MonoBehaviour
             _player.height = Mathf.Lerp(_player.height, 2, _crouchTransitionSpeed * Time.deltaTime);
             _player.center = Vector3.Lerp(_player.center, new Vector3(0, 1, 0), _crouchTransitionSpeed * Time.deltaTime);
         }
+    }
+
+    public AudioClip GetFootstepSound()
+    {
+        RaycastHit hit;
+
+        if (Physics.SphereCast(_player.center, 0.1f, Vector3.down, out hit, _player.bounds.extents.y))
+        {
+            Surface surface = hit.collider.GetComponent<Surface>();
+            if (surface != null && surface.surface.footstepSounds.Length > 0)
+            {
+                return surface.surface.footstepSounds[Random.Range(0, surface.surface.footstepSounds.Length)];
+            }
+        }
+        return null;
     }
 }
