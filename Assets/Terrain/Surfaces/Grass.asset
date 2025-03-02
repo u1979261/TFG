@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Grass
   m_EditorClassIdentifier: 
   footstepSounds:
-  - {fileID: 8300000, guid: 2cec4ef0a9decc3449df5e1005a1bc90, type: 3}
-  - {fileID: 8300000, guid: e6ccffa59f20c774081401e382af02d6, type: 3}
-  - {fileID: 8300000, guid: 278818b56de319142b3ca1b33d539d17, type: 3}
+  - {fileID: 8300000, guid: 2429399f1ca311945a12f37a32c14aed, type: 3}
+  - {fileID: 8300000, guid: f0761d807b3ae1d4598a50357cb58a5e, type: 3}
+  - {fileID: 8300000, guid: f27be18648dcceb46a46397f5c4c2e62, type: 3}
+  - {fileID: 8300000, guid: 3005916a05630f2439d211eaa6faba3d, type: 3}
