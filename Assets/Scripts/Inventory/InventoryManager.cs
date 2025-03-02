@@ -70,6 +70,10 @@ public class InventoryManager : MonoBehaviour
         else
         {
             transform.localPosition = new Vector3(-100000, 0, 0); // OUT of the screen
+            if (GetComponentInParent<WindowHandler>().storage.opened)
+            {
+                GetComponentInParent<WindowHandler>().storage.Close();
+            }
         }
     }
     private void OnDisable() 

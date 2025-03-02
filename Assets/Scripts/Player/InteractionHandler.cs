@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InteractionHandler :MonoBehaviour
 {
-    public float interactionDistance = 2f;
+    public float interactionDistance = 4.5f;
     private InputSystem_Actions _playerInput;
 
 
@@ -25,9 +25,18 @@ public class InteractionHandler :MonoBehaviour
         if(Physics.Raycast(transform.position,transform.forward, out hit, interactionDistance))
         {
             Pickup pickup = hit.transform.GetComponent<Pickup>();
+            Storage storage = hit.transform.GetComponent<Storage>();
             if (pickup != null)
             {
                 GetComponentInParent<WindowHandler>().inventory.AddItem(pickup);
+            }
+            if (storage != null)
+            {
+                if(!storage.opened)
+                {
+                    GetComponentInParent<WindowHandler>().inventory.opened = true;
+                    storage.Open(GetComponentInParent<WindowHandler>().storage);
+                }
             }
         }
     }
