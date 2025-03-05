@@ -68,8 +68,16 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     {
         stackSize += itemStackSize;
     }
-    public void Drop() { 
+    public void Drop() {
+        ItemSO weapon = this.data;
         GetComponentInParent<InventoryManager>().DropItem(this);
+        if(weaponEquippedOn!= null)
+        {
+            if (weapon == weaponEquippedOn.weaponData)
+            {
+                weaponEquippedOn.UnEquip();
+            }
+        }
     }
 
     public void Clean()

@@ -20,6 +20,12 @@ public class InventoryManager : MonoBehaviour
     public Transform contentHolder;
     public Transform hotBarContentHolder;
 
+    [Header("HOTBAR")]
+    public GameObject inventoryPanel;
+    public GameObject hotBarPanel;
+    public GameObject CraftingPanel;
+    public GameObject StoragePanel;
+
 
 
     [HideInInspector] public Slot[] inventorySlots;
@@ -65,17 +71,22 @@ public class InventoryManager : MonoBehaviour
         }
         if (opened)
         {
-            transform.localPosition = new Vector3(0, 0, 0); //Iventory UI Position
+            inventoryPanel.transform.localPosition = new Vector3(0, 59, 0);
+            CraftingPanel.transform.localPosition = new Vector3(0, 0, 0);
+            StoragePanel.transform.localPosition = new Vector3(0, 0, 0);
         }
         else
         {
-            transform.localPosition = new Vector3(-100000, 0, 0); // OUT of the screen
+            inventoryPanel.transform.localPosition = new Vector3(-100000, 59, 0);
+            CraftingPanel.transform.localPosition = new Vector3(-100000, 0, 0);
+            StoragePanel.transform.localPosition = new Vector3(-100000, 0, 0);
             if (GetComponentInParent<WindowHandler>().storage.opened)
             {
                 GetComponentInParent<WindowHandler>().storage.Close();
             }
         }
     }
+
     private void OnDisable() 
     {
         _playerInput.Player.Disable();
