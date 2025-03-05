@@ -9,6 +9,7 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
 {
     private DragDropHandler dragDropHandler;
     private InventoryManager inventory;
+    public Weapon weaponEquippedOn;
 
 
     public ItemSO data;

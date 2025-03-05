@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
 
     public ItemSO weaponData;
     public bool isAutomatic;
+    public ParticleSystem muzzleFlash;
 
     [Space]
     public Transform shootPoint;
@@ -132,6 +133,14 @@ public class Weapon : MonoBehaviour
             Debug.Log($"Hitted : {hit.transform.name}");
         }
 
+        if(muzzleFlash != null)
+        {
+            muzzleFlash.Play();
+        }
+        else
+        {
+            Debug.LogWarning("No Muzzle Flash");
+        }
 
         anim.CrossFadeInFixedTime("Shoot_BASE", 0.015f);
         //GetComponentInParent<CameraLook>().RecoilCamera(Random.Range(-weaponData.horizontalRecoil, weaponData.horizontalRecoil), Random.Range(weaponData.minVerticalRecoil, weaponData.maxVerticalRecoil));
@@ -169,6 +178,14 @@ public class Weapon : MonoBehaviour
             }
         }
 
+        if (muzzleFlash != null)
+        {
+            muzzleFlash.Play();
+        }
+        else
+        {
+            Debug.LogWarning("No Muzzle Flash");
+        }
         anim.CrossFadeInFixedTime("Shoot_BASE", 0.015f);
         GetComponentInParent<CameraLook>().RecoilCamera(Random.Range(weaponData.minVerticalRecoil, weaponData.maxVerticalRecoil), Random.Range(-weaponData.horizontalRecoil, weaponData.horizontalRecoil));
         audioS.PlayOneShot(weaponData.shootSound);
@@ -351,13 +368,18 @@ public class Weapon : MonoBehaviour
         gameObject.SetActive(true);
         GetComponentInParent<CameraFOV_Handler>().weapon = this;
         slotEquippedOn = slot;
+        slot.weaponEquippedOn = this;
         transform.localPosition = hipPos;
     }
     public void UnEquip()
     {
         GetComponentInParent<CameraFOV_Handler>().weapon = null;
-        gameObject.SetActive (false);
+        slotEquippedOn.weaponEquippedOn = null;
         slotEquippedOn = null;
 
+        isReloading = false;
+        hasTakenOut = false;
+
+        gameObject.SetActive (false);
     }
 }

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ShootGun
   m_EditorClassIdentifier: 
   itemType: 2
-  itemIcon: {fileID: 0}
-  itemName: New item
-  itemDescription: New item description
-  specificDropModel: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: c7ab9b6286ec9c640ae62f9c7a3749a0, type: 3}
+  itemName: Shotgun
+  itemDescription: Shotgun
+  specificDropModel: {fileID: 556556308797390888, guid: e8a34433d51dd5e4b870d0e1ec81023e, type: 3}
   isStackable: 0
   maxStack: 1
   toolMultiplier: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
   shotgunFire: 1
   pelletsPerShot: 8
   magSize: 20
-  bulletData: {fileID: 0}
+  bulletData: {fileID: 11400000, guid: 97e7e68a7abc46240b0c674080087b63, type: 2}
   fireRate: 0.1
   shootSound: {fileID: 0}
   reloadSound: {fileID: 0}
