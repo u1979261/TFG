@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class InventoryManager : MonoBehaviour
 {
-    public Weapon[] weapons; 
+    public Weapon[] weapons;
+    public BuildingHandler building;
 
     public bool opened;
     private InputSystem_Actions _playerInput;
@@ -22,9 +23,7 @@ public class InventoryManager : MonoBehaviour
 
     [Header("HOTBAR")]
     public GameObject inventoryPanel;
-    public GameObject hotBarPanel;
     public GameObject CraftingPanel;
-    public GameObject StoragePanel;
 
 
 
@@ -73,13 +72,11 @@ public class InventoryManager : MonoBehaviour
         {
             inventoryPanel.transform.localPosition = new Vector3(0, 59, 0);
             CraftingPanel.transform.localPosition = new Vector3(0, 0, 0);
-            StoragePanel.transform.localPosition = new Vector3(0, 0, 0);
         }
         else
         {
             inventoryPanel.transform.localPosition = new Vector3(-100000, 59, 0);
             CraftingPanel.transform.localPosition = new Vector3(-100000, 0, 0);
-            StoragePanel.transform.localPosition = new Vector3(-100000, 0, 0);
             if (GetComponentInParent<WindowHandler>().storage.opened)
             {
                 GetComponentInParent<WindowHandler>().storage.Close();
@@ -263,9 +260,18 @@ public class InventoryManager : MonoBehaviour
             to.weaponEquippedOn.UnEquip();
         }
 
+        if (from == building.slotInUse)
+        {
+            building.slotInUse = null;
+        }
+        if (to == building.slotInUse)
+        {
+            building.slotInUse = null;
+        }
+
         //SWAP
         if (from.data != to.data)
-       {
+        {
             ItemSO data = to.data;
             int stackSize = to.stackSize;
 
@@ -274,7 +280,7 @@ public class InventoryManager : MonoBehaviour
 
             from.data = data;
             from.stackSize = stackSize;
-       }
+        }
        else
        {
             if (from.data.isStackable)

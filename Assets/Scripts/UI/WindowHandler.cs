@@ -1,3 +1,4 @@
+using Unity.Android.Gradle;
 using UnityEngine;
 
 public class WindowHandler : MonoBehaviour
@@ -5,6 +6,7 @@ public class WindowHandler : MonoBehaviour
     [HideInInspector] public InventoryManager inventory;
     [HideInInspector] public CraftingManager crafting;
     [HideInInspector] public StorageUI storage;
+    [HideInInspector] public BuildingHandler building;
     public bool isOpen;
 
     private CameraLook _camera;
@@ -15,6 +17,7 @@ public class WindowHandler : MonoBehaviour
         storage = GetComponentInChildren<StorageUI>();
         inventory = GetComponentInChildren<InventoryManager>();
         crafting = GetComponentInChildren<CraftingManager>();
+        building = GetComponentInChildren<BuildingHandler>();
     }
 
     private void Update()
