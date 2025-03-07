@@ -4,6 +4,7 @@ public class BuildingHandler : MonoBehaviour
 {
     public Slot slotInUse;
     public Transform offGroundPoint;
+    [HideInInspector] public WindowHandler windowHandler;
     [Space]
     public float range = 5f;
     public Color allowed;
@@ -12,11 +13,17 @@ public class BuildingHandler : MonoBehaviour
     public BuildReference buildReference;
     public bool cantBuild;
     private float currentRotation = 0f;
-
+    public void Start()
+    {
+        windowHandler = GetComponentInParent<WindowHandler>();
+    }
     private void Update()
     {
-        UpdateBuilding();
-        HandleRotation();
+        if (!windowHandler.isOpen)
+        {
+            UpdateBuilding();
+            HandleRotation();
+        }
     }
 
     public void UpdateColors()
@@ -57,15 +64,15 @@ public class BuildingHandler : MonoBehaviour
             {
                 if (buildReference.buildPrefab.CompareTag("Foundation"))
                 {
-                    AlignToGrid(hit.point, hit.normal, 0.825f, 0f);
+                    AlignToGrid(hit.point, hit.normal, 0.825f, 0f,0f);
                 }
                 else if (buildReference.buildPrefab.CompareTag("Wall"))
                 {
-                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.25f);//0.80f;
+                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.26f, 0.102f);//0.80f;
                 }
                 else if (buildReference.buildPrefab.CompareTag("Box"))
                 {
-                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.25f);
+                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.25f, 0.1f);
                 }
 
                 cantBuild = true;
@@ -96,14 +103,20 @@ public class BuildingHandler : MonoBehaviour
         }
     }
 
-    private void AlignToGrid(Vector3 position, Vector3 normal, float gridSize,float up)
+    private void AlignToGrid(Vector3 position, Vector3 normal, float gridSize, float up, float forwardOffset)
     {
         Vector3 alignedPosition = new Vector3(
             Mathf.Round(position.x / gridSize) * gridSize,
             Mathf.Round(position.y / gridSize) * gridSize,
             Mathf.Round(position.z / gridSize) * gridSize
         );
+
         alignedPosition.y += up;
+
+        // Calcular desplazamiento hacia adelante basado en la rotación
+        Vector3 forward = Quaternion.Euler(0, currentRotation, 0) * Vector3.forward;
+        alignedPosition += forward * forwardOffset;
+
         buildReference.transform.position = alignedPosition;
         buildReference.transform.rotation = Quaternion.Euler(0, currentRotation, 0);
     }
@@ -135,7 +148,7 @@ public class BuildingHandler : MonoBehaviour
                 buildReference.transform.rotation
             );
 
-            if (colliders.Length > 1)
+            if (colliders.Length > 3)
             {
                 cantBuild = false;
             }
