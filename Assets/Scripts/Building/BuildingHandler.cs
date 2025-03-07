@@ -80,11 +80,11 @@ public class BuildingHandler : MonoBehaviour
                 }
                 else if (buildReference.buildPrefab.CompareTag("DoorWay"))
                 {
-                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.26f, 0f);
+                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.21f, 0.101f);
                 }
                 else if (buildReference.buildPrefab.CompareTag("Floor"))
                 {
-                    AlignToGrid(hit.point, hit.normal, 0.81f, 0.2f, 0.0f);
+                    AlignToGrid(hit.point, hit.normal, 0.825f, 0f, -0.2f);
                 }
 
                 cantBuild = true;
