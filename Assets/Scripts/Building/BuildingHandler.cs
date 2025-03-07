@@ -68,11 +68,23 @@ public class BuildingHandler : MonoBehaviour
                 }
                 else if (buildReference.buildPrefab.CompareTag("Wall"))
                 {
-                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.26f, 0.102f);//0.80f;
+                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.26f, 0.104f);
                 }
                 else if (buildReference.buildPrefab.CompareTag("Box"))
                 {
                     AlignToGrid(hit.point, hit.normal, 0.825f, 0.25f, 0.1f);
+                }
+                else if (buildReference.buildPrefab.CompareTag("Door"))
+                {
+                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.26f, 0.1f);
+                }
+                else if (buildReference.buildPrefab.CompareTag("DoorWay"))
+                {
+                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.26f, 0f);
+                }
+                else if (buildReference.buildPrefab.CompareTag("Floor"))
+                {
+                    AlignToGrid(hit.point, hit.normal, 0.81f, 0.2f, 0.0f);
                 }
 
                 cantBuild = true;
@@ -148,7 +160,7 @@ public class BuildingHandler : MonoBehaviour
                 buildReference.transform.rotation
             );
 
-            if (colliders.Length > 3)
+            if (colliders.Length > 5)
             {
                 cantBuild = false;
             }

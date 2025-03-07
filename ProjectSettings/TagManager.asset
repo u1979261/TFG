@@ -7,6 +7,9 @@ TagManager:
   - Wall
   - Foundation
   - Box
+  - Door
+  - DoorWay
+  - Floor
   layers:
   - Default
   - TransparentFX
