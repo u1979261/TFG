@@ -130,9 +130,12 @@ public class Weapon : MonoBehaviour
         if (Physics.Raycast(shootPoint.position, shootDir, out hit, weaponData.range, shootableLayers))
         {
             GameObject bulletHole = Instantiate(bulletPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
-            Debug.Log($"Hitted : {hit.transform.name}");
+            AnimalAI animal = hit.transform.GetComponent<AnimalAI>();
+            if (animal != null)
+            {
+                animal.health -= weaponData.damage;
+            }
         }
-
         if(muzzleFlash != null)
         {
             muzzleFlash.Play();
@@ -174,7 +177,11 @@ public class Weapon : MonoBehaviour
             if (Physics.Raycast(shootPoint.position, shootDir, out hit, weaponData.range, shootableLayers))
             {
                 GameObject bulletHole = Instantiate(bulletPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
-                Debug.Log($"Hitted : {hit.transform.name}");
+                AnimalAI animal = hit.transform.GetComponent<AnimalAI>();
+                if (animal != null)
+                {
+                    animal.health -= weaponData.damage;
+                }
             }
         }
 
