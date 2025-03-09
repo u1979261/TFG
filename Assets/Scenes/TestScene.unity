@@ -2468,7 +2468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sun: {fileID: 1850587515}
   daySpeed: 1
-  timeOfDay: 2200
+  timeOfDay: 1350
   cycleDuration: 2700
   dayStartTime: 750
   dayEndTime: 2150
