@@ -20,19 +20,15 @@ public class AnimalAI : MonoBehaviour
 
     [Header("Movement")]
     private float currentWanderTime;
-    public float wanderWaitTime = 10f;
+    public float wanderWaitTime = 7f;
     public bool canMoveWhileAttacking;
     [Space]
     public float walkSpeed = 2f;
     public float runSpeed = 3.5f;
     public float wanderRange = 5f;
 
-
-
-
     public bool walk;
     public bool run;
-
 
     private void Start()
     {
@@ -49,16 +45,12 @@ public class AnimalAI : MonoBehaviour
         if (health <= 0)
         {
             agent.SetDestination(transform.position);
-
             Destroy(agent);
             anim.SetTrigger("Die");
-
-
             GetComponent<ResourceObject>().enabled = true;
             Destroy(this);
             return;
         }
-
 
         UpdateAnimations();
 
@@ -74,7 +66,9 @@ public class AnimalAI : MonoBehaviour
             agent.SetDestination(target.position);
         }
         else
+        {
             Wander();
+        }
     }
 
     public void UpdateAnimations()
@@ -85,27 +79,26 @@ public class AnimalAI : MonoBehaviour
 
     public void Wander()
     {
-        if (currentWanderTime >= wanderWaitTime)
+        // Verifica si el agente ha llegado a su destino actual
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
-            Vector3 wanderPos = transform.position;
+            currentWanderTime += Time.deltaTime;
 
-            wanderPos.x += Random.Range(-wanderRange, wanderRange);
-            wanderPos.z += Random.Range(-wanderRange, wanderRange);
-
-            currentWanderTime = 0;
-
-            agent.speed = walkSpeed;
-            agent.SetDestination(wanderPos);
-
-            walk = true;
-            run = false;
-        }
-        else
-        {
-            if (agent.isStopped)
+            if (currentWanderTime >= wanderWaitTime)
             {
-                currentWanderTime += Time.deltaTime;
+                Vector3 wanderPos = transform.position;
+                wanderPos.x += Random.Range(-wanderRange, wanderRange);
+                wanderPos.z += Random.Range(-wanderRange, wanderRange);
 
+                agent.speed = walkSpeed;
+                agent.SetDestination(wanderPos);
+
+                currentWanderTime = 0;
+                walk = true;
+                run = false;
+            }
+            else
+            {
                 walk = false;
                 run = false;
             }
@@ -115,11 +108,8 @@ public class AnimalAI : MonoBehaviour
     public void Chase()
     {
         agent.SetDestination(target.transform.position);
-
         walk = false;
-
         run = true;
-
         agent.speed = runSpeed;
 
         if (Vector3.Distance(target.transform.position, transform.position) <= minAttackDistance && !isAttacking)
@@ -142,14 +132,13 @@ public class AnimalAI : MonoBehaviour
             return;
 
         target.GetComponent<PlayerStats>().health -= damage;
-
         isAttacking = false;
+
         if (target != null)
         {
             agent.isStopped = false;
             agent.SetDestination(target.position);
         }
-
     }
 
     private void OnTriggerEnter(Collider other)

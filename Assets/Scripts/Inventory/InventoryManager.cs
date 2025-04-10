@@ -70,18 +70,25 @@ public class InventoryManager : MonoBehaviour
         }
         if (opened)
         {
-            inventoryPanel.transform.localPosition = new Vector3(0, 59, 0);
-            CraftingPanel.transform.localPosition = new Vector3(0, 0, 0);
+            inventoryPanel.transform.localPosition = new Vector3(0, 4, 0);
         }
         else
         {
-            inventoryPanel.transform.localPosition = new Vector3(-100000, 59, 0);
-            CraftingPanel.transform.localPosition = new Vector3(-100000, 0, 0);
+            inventoryPanel.transform.localPosition = new Vector3(-100000, 4, 0);
             if (GetComponentInParent<WindowHandler>().storage.opened)
             {
                 GetComponentInParent<WindowHandler>().storage.Close();
             }
         }
+        if (GetComponentInParent<WindowHandler>().storage.opened)
+        {
+            GetComponentInParent<WindowHandler>().crafting.opened = false;
+        }
+        else
+        {
+            GetComponentInParent<WindowHandler>().crafting.opened = true;
+        }
+
     }
 
     private void OnDisable() 
@@ -247,74 +254,64 @@ public class InventoryManager : MonoBehaviour
     }
 
 
-    public void DragDrop(Slot from, Slot to)
+    public void DragDrop(Slot from, Slot to, bool isRightClick, bool isMiddleClick)
     {
-        //UNEQUIP WAPONS FROM SLOTS
+        if (from.weaponEquippedOn != null) from.weaponEquippedOn.UnEquip();
+        if (to.weaponEquippedOn != null) to.weaponEquippedOn.UnEquip();
 
-        if(from.weaponEquippedOn != null)
-        {
-            from.weaponEquippedOn.UnEquip();
-        }
-        if (to.weaponEquippedOn != null)
-        {
-            to.weaponEquippedOn.UnEquip();
-        }
+        if (from == building.slotInUse) building.slotInUse = null;
+        if (to == building.slotInUse) building.slotInUse = null;
 
-        if (from == building.slotInUse)
-        {
-            building.slotInUse = null;
-        }
-        if (to == building.slotInUse)
-        {
-            building.slotInUse = null;
-        }
+        bool isWeapon = from.data.itemType == ItemSO.ItemType.Weapon || from.data.itemType == ItemSO.ItemType.MeleeWeapon;
 
-        //SWAP
-        if (from.data != to.data)
+        // Desactivar clic derecho y medio con armas
+        if (isWeapon && (isRightClick || isMiddleClick))
+            return;
+
+        // Intercambio completo si son distintos o no stackeables o armas
+        if (from.data != to.data || from.data == null || !from.data.isStackable || isWeapon)
         {
             ItemSO data = to.data;
             int stackSize = to.stackSize;
 
             to.data = from.data;
-            to.stackSize = from.stackSize;
+            to.stackSize = isMiddleClick ? from.stackSize / 2 : (isRightClick ? 1 : from.stackSize);
 
-            from.data = data;
-            from.stackSize = stackSize;
-        }
-       else
-       {
-            if (from.data.isStackable)
+            if (isRightClick || isMiddleClick)
             {
-                if(from.stackSize + to.stackSize > from.data.maxStack)
-                {
-                    int amountLeft = (from.stackSize + to.stackSize) - from.data.maxStack;
-
-                    from.stackSize = amountLeft;
-                    to.stackSize = to.data.maxStack;
-                }
-                else
-                {
-                    to.stackSize = from.stackSize + to.stackSize;
-                    from.data = null;
-                    from.stackSize = 0;
-                }
+                int amountRemoved = to.stackSize;
+                from.stackSize -= amountRemoved;
             }
             else
             {
-                ItemSO data = to.data;
-                int stackSize = to.stackSize;
-
-                to.data = from.data;
-                to.stackSize = from.stackSize;
-
                 from.data = data;
                 from.stackSize = stackSize;
             }
 
-       }
-       from.UpdateSlot();
-       to.UpdateSlot();
+            if (from.stackSize <= 0)
+                from.data = null;
+        }
+        else if (from.data.isStackable)
+        {
+            int amountToMove = isRightClick ? 1 :
+                               isMiddleClick ? from.stackSize / 2 :
+                               from.stackSize;
+
+            int availableSpace = from.data.maxStack - to.stackSize;
+            amountToMove = Mathf.Min(amountToMove, availableSpace);
+
+            to.stackSize += amountToMove;
+            from.stackSize -= amountToMove;
+
+            if (from.stackSize <= 0)
+                from.data = null;
+        }
+
+        from.UpdateSlot();
+        to.UpdateSlot();
     }
+
+
 
     public void AddItem(ItemSO data, int stackSize)
     {

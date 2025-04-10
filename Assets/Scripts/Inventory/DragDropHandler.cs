@@ -7,6 +7,8 @@ public class DragDropHandler : MonoBehaviour
     [HideInInspector] public bool isDragging;
     [HideInInspector] public Slot slotFrom;
     [HideInInspector] public Slot slotTo;
+    [HideInInspector] public bool isRightClick = false;
+    [HideInInspector] public bool isMiddleClick = false;
     [Space]
     public Image dragDropIcon;
 

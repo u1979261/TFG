@@ -41,3 +41,7 @@ MonoBehaviour:
   thirstStats: -10
   hungerStats: 5
   buildReference: {fileID: 0}
+  isFuel: 0
+  outcome: {fileID: 11400000, guid: 7fff584dd640eea4a928b5c8c2b0135d, type: 2}
+  outcomeAmount: 1
+  processTime: 5

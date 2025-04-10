@@ -63,4 +63,11 @@ public class ItemSO : ScriptableObject
 
     [Header("Building")]
     public BuildReference buildReference;
+
+    [Header("Fuel/Smelting")]
+    public bool isFuel;
+    public ItemSO outcome;
+    [Range(1,100)]
+    public int outcomeAmount = 1;
+    public float processTime = 3f;
 }

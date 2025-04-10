@@ -17,8 +17,8 @@ MonoBehaviour:
   itemName: Foundation
   itemDescription: StorageBox
   specificDropModel: {fileID: 0}
-  isStackable: 0
-  maxStack: 1
+  isStackable: 1
+  maxStack: 100
   toolMultiplier: 1
   damage: 15
   range: 300
@@ -41,3 +41,7 @@ MonoBehaviour:
   thirstStats: 10
   hungerStats: 10
   buildReference: {fileID: 1797171166068904043, guid: 61f35bc63abe4cf48982e4f6de73db86, type: 3}
+  isFuel: 0
+  outcome: {fileID: 0}
+  outcomeAmount: 1
+  processTime: 3

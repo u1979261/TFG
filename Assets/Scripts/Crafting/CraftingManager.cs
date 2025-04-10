@@ -17,6 +17,7 @@ public class CraftingManager : MonoBehaviour
     private bool _isCrafting;
     private float _currentTimer;
 
+    public bool opened;
     private void Start()
     {
         RecepiesGenerator();
@@ -39,6 +40,12 @@ public class CraftingManager : MonoBehaviour
             }
             _currentTimer -= Time.deltaTime;
         }
+        if (opened && inventory.opened)
+        {
+            transform.localPosition = new Vector3(0, 0, 0);
+        }
+        else
+            transform.position = new Vector3(-10000, 0, 0);
     }
     public void RecepiesGenerator()
     {

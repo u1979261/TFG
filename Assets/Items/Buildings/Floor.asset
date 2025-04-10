@@ -17,8 +17,8 @@ MonoBehaviour:
   itemName: Floor
   itemDescription: Floor
   specificDropModel: {fileID: 0}
-  isStackable: 0
-  maxStack: 1
+  isStackable: 1
+  maxStack: 100
   toolMultiplier: 1
   damage: 15
   range: 300
@@ -41,3 +41,7 @@ MonoBehaviour:
   thirstStats: 10
   hungerStats: 10
   buildReference: {fileID: 3987806711949032751, guid: 5f3773c585303c44cafa25e15ef6e6e2, type: 3}
+  isFuel: 0
+  outcome: {fileID: 0}
+  outcomeAmount: 1
+  processTime: 3

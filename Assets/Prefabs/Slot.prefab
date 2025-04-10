@@ -109,8 +109,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 167, y: -226.78452}
-  m_SizeDelta: {x: -628.1789, y: -554.0506}
+  m_AnchoredPosition: {x: 164.95528, y: -226.78452}
+  m_SizeDelta: {x: -624.0895, y: -554.0506}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4815153738418619429
 CanvasRenderer:
@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d75ef488966c124493eb4d3fa4ae5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponEquippedOn: {fileID: 0}
   data: {fileID: 0}
   stackSize: 0
   icon: {fileID: 2894062949111733384}

@@ -1,16 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine.EventSystems;
-using System.Collections.Concurrent;
-using System.Runtime.InteropServices.WindowsRuntime;
+
 public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private DragDropHandler dragDropHandler;
     private InventoryManager inventory;
     public Weapon weaponEquippedOn;
-
 
     public ItemSO data;
     public int stackSize;
@@ -28,17 +25,12 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         inventory = GetComponentInParent<Player>().GetComponentInChildren<InventoryManager>();
         UpdateSlot();
     }
+
     public void UpdateSlot()
     {
-        if (data != null)
+        if (data != null && data.itemType != ItemSO.ItemType.Weapon && stackSize <= 0)
         {
-            if (data.itemType != ItemSO.ItemType.Weapon)
-            {
-                if (stackSize <= 0)
-                {
-                    data = null;
-                }
-            }
+            data = null;
         }
 
         if (data == null)
@@ -47,8 +39,8 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
             icon.gameObject.SetActive(false);
             stackText.gameObject.SetActive(false);
         }
-        else 
-        { 
+        else
+        {
             _isEmpty = false;
             icon.sprite = data.itemIcon;
             stackText.text = $"x{stackSize}";
@@ -68,15 +60,14 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     {
         stackSize += itemStackSize;
     }
-    public void Drop() {
+
+    public void Drop()
+    {
         ItemSO weapon = this.data;
         GetComponentInParent<InventoryManager>().DropItem(this);
-        if(weaponEquippedOn!= null)
+        if (weaponEquippedOn != null && weapon == weaponEquippedOn.weaponData)
         {
-            if (weapon == weaponEquippedOn.weaponData)
-            {
-                weaponEquippedOn.UnEquip();
-            }
+            weaponEquippedOn.UnEquip();
         }
     }
 
@@ -89,12 +80,14 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!dragDropHandler.isDragging)
+        if (!dragDropHandler.isDragging && !isEmpty)
         {
-            if (eventData.button == PointerEventData.InputButton.Left && !isEmpty)
+            if (eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right || eventData.button == PointerEventData.InputButton.Middle)
             {
                 dragDropHandler.slotFrom = this;
                 dragDropHandler.isDragging = true;
+                dragDropHandler.isRightClick = eventData.button == PointerEventData.InputButton.Right;
+                dragDropHandler.isMiddleClick = eventData.button == PointerEventData.InputButton.Middle;
             }
         }
     }
@@ -103,20 +96,24 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     {
         if (dragDropHandler.isDragging)
         {
-            //DROP
+            bool isRightClick = eventData.button == PointerEventData.InputButton.Right;
+            Debug.Log("Right Click: " + isRightClick);
+            bool isMiddleClick = eventData.button == PointerEventData.InputButton.Middle;
+            Debug.Log("Middle Click: " + isMiddleClick);
+
             if (dragDropHandler.slotTo == null)
             {
                 dragDropHandler.slotFrom.Drop();
                 dragDropHandler.isDragging = false;
             }
-
             else if (dragDropHandler.slotTo != null)
             {
-                inventory.DragDrop(dragDropHandler.slotFrom, dragDropHandler.slotTo);
+                inventory.DragDrop(dragDropHandler.slotFrom, dragDropHandler.slotTo, isRightClick, isMiddleClick);
                 dragDropHandler.isDragging = false;
             }
         }
     }
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -137,10 +134,11 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     public void Use()
     {
         if (data == null) return;
-        if(data.itemType == ItemSO.ItemType.Weapon || data.itemType == ItemSO.ItemType.MeleeWeapon)
+
+        if (data.itemType == ItemSO.ItemType.Weapon || data.itemType == ItemSO.ItemType.MeleeWeapon)
         {
             bool shouldJustUnequip = false;
-            //UNEQUIP ITEM
+
             for (int i = 0; i < inventory.weapons.Length; i++)
             {
                 if (inventory.weapons[i].gameObject.activeSelf)
@@ -152,10 +150,8 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
                     inventory.weapons[i].UnEquip();
                 }
             }
-            if (shouldJustUnequip)
-                return;
 
-            //EQUIP ITEM
+            if (shouldJustUnequip) return;
 
             for (int i = 0; i < inventory.weapons.Length; i++)
             {
@@ -165,11 +161,11 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
                 }
             }
         }
-        if (data.itemType == ItemSO.ItemType.Consumable)
+        else if (data.itemType == ItemSO.ItemType.Consumable)
         {
             Consume();
         }
-        if (data.itemType == ItemSO.ItemType.Building)
+        else if (data.itemType == ItemSO.ItemType.Building)
         {
             Build();
         }
@@ -184,13 +180,14 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
                 inventory.weapons[i].UnEquip();
             }
         }
+
         if (inventory.building.slotInUse == null)
         {
             inventory.building.slotInUse = this;
         }
         else
         {
-            if(inventory.building.slotInUse == this)
+            if (inventory.building.slotInUse == this)
             {
                 inventory.building.slotInUse = null;
             }

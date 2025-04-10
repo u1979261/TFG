@@ -10,8 +10,14 @@ public class Storage : MonoBehaviour
     [Space]
     public bool opened;
 
+
+    [Header("Furnace")]
+    [HideInInspector] public bool isFurnace;
+
+
     private void Start()
     {
+        isFurnace = GetComponent<Furnace>() != null;
         List<StorageSlot> slotList = new List<StorageSlot>();
         for (int i = 0; i < StorageSize; i++)
         {
@@ -20,7 +26,6 @@ public class Storage : MonoBehaviour
         }
         slots = slotList.ToArray();
     }
-
     public void Open(StorageUI UI)
     {
         UI.Open(this);
@@ -42,6 +47,24 @@ public class Storage : MonoBehaviour
             slots[i].amount = UISlots[i].stackSize;
         }
         opened = false;
+    }
+
+    public void AddItem(ItemSO item, int amount)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].data == null)
+            {
+                slots[i].data = item;
+                slots[i].amount = amount;
+                break;
+            }
+            else if (slots[i].data == item)
+            {
+                slots[i].amount += amount;
+                break;
+            }
+        }
     }
 
 }
