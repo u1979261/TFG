@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
-  m_Name: Sulfur
+  m_Name: Coal
   m_EditorClassIdentifier: 
   itemType: 0
-  itemIcon: {fileID: 21300000, guid: 44eaa1320f93dab46b3b6a696fe2d6fd, type: 3}
-  itemName: Sulfur
-  itemDescription: Sulfur
+  itemIcon: {fileID: 21300000, guid: c0aed5e816328a04690ad07e487b916a, type: 3}
+  itemName: Coal
+  itemDescription: Coal
   specificDropModel: {fileID: 0}
   isStackable: 1
   maxStack: 1000
@@ -32,7 +32,7 @@ MonoBehaviour:
   pelletsPerShot: 8
   magSize: 20
   bulletData: {fileID: 0}
-  fireRate: 0
+  fireRate: 0.1
   shootSound: {fileID: 0}
   reloadSound: {fileID: 0}
   takeoutSound: {fileID: 0}
