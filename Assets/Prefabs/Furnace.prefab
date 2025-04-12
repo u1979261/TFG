@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8863250358390405819}
   - component: {fileID: 96402469971883640}
   - component: {fileID: 6423640539906964263}
-  - component: {fileID: 3745698175833981844}
+  - component: {fileID: 4708768501681732909}
   m_Layer: 0
   m_Name: Furnace
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4241933508089704318}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.302742, y: -0.00000047683716, z: 11.3340645}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -124,12 +124,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storage: {fileID: 0}
   fuelSlot: {fileID: 0}
-  smeltingSlot: {fileID: 0}
   isOn: 0
   allowedItemType: 0
   fire: {fileID: 8256107645657646911}
---- !u!64 &3745698175833981844
-MeshCollider:
+  coalItem: {fileID: 0}
+  coalAmountPerFuel: 1
+--- !u!65 &4708768501681732909
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -146,10 +147,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: ad54159493fea8c4e89baeaacbb5eb69, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.3463349, y: 2.1945016, z: 1.4347655}
+  m_Center: {x: 0, y: 1.0972508, z: -0.005751044}
 --- !u!1 &4449905988386576989
 GameObject:
   m_ObjectHideFlags: 0

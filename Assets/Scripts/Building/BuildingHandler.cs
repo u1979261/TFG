@@ -86,8 +86,11 @@ public class BuildingHandler : MonoBehaviour
                 {
                     AlignToGrid(hit.point, hit.normal, 0.825f, 0f, -0.2f);
                 }
-
-                cantBuild = true;
+                else
+                {
+                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.26f, 0f);
+                }
+                    cantBuild = true;
             }
             else
             {

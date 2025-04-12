@@ -30,15 +30,16 @@ public class AnimalAI : MonoBehaviour
     public bool walk;
     public bool run;
 
+    // Temporizador para perder el target
+    private float timeOutOfRange = 0f;
+    public float timeToForgetTarget = 5f;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-
         currentWanderTime = wanderWaitTime;
     }
-
-    bool hasDied;
 
     private void Update()
     {
@@ -56,14 +57,47 @@ public class AnimalAI : MonoBehaviour
 
         if (target != null)
         {
-            if (Vector3.Distance(target.transform.position, transform.position) > maxChaseDistance)
-                target = null;
+            float distanceToTarget = Vector3.Distance(target.position, transform.position);
+
+            if (distanceToTarget > maxChaseDistance)
+            {
+                timeOutOfRange += Time.deltaTime;
+
+                if (timeOutOfRange >= timeToForgetTarget)
+                {
+                    Debug.Log("Target perdido por estar fuera de rango.");
+                    target = null;
+                    isAttacking = false;
+
+                    agent.isStopped = true;     // Detener movimiento
+                    agent.ResetPath();          // Cancelar destino actual
+
+                    walk = false;
+                    run = false;
+                    timeOutOfRange = 0f;
+                    return;
+                }
+            }
+            else
+            {
+                timeOutOfRange = 0f;
+            }
 
             if (!isAttacking)
+            {
                 Chase();
-
-            agent.isStopped = false;
-            agent.SetDestination(target.position);
+                agent.isStopped = false;
+                agent.SetDestination(target.position);
+            }
+            else if (canMoveWhileAttacking)
+            {
+                agent.isStopped = false;
+                agent.SetDestination(target.position);
+            }
+            else
+            {
+                agent.isStopped = true;
+            }
         }
         else
         {
@@ -79,7 +113,6 @@ public class AnimalAI : MonoBehaviour
 
     public void Wander()
     {
-        // Verifica si el agente ha llegado a su destino actual
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             currentWanderTime += Time.deltaTime;
@@ -91,6 +124,7 @@ public class AnimalAI : MonoBehaviour
                 wanderPos.z += Random.Range(-wanderRange, wanderRange);
 
                 agent.speed = walkSpeed;
+                agent.isStopped = false;
                 agent.SetDestination(wanderPos);
 
                 currentWanderTime = 0;
@@ -107,13 +141,14 @@ public class AnimalAI : MonoBehaviour
 
     public void Chase()
     {
-        agent.SetDestination(target.transform.position);
+        agent.speed = runSpeed;
         walk = false;
         run = true;
-        agent.speed = runSpeed;
 
-        if (Vector3.Distance(target.transform.position, transform.position) <= minAttackDistance && !isAttacking)
+        if (Vector3.Distance(target.position, transform.position) <= minAttackDistance && !isAttacking)
+        {
             StartAttack();
+        }
     }
 
     public void StartAttack()
@@ -121,29 +156,30 @@ public class AnimalAI : MonoBehaviour
         isAttacking = true;
 
         if (!canMoveWhileAttacking)
+        {
             agent.SetDestination(transform.position);
+            agent.isStopped = true;
+        }
 
         anim.SetTrigger("Attack");
     }
 
     public void FinishAttack()
     {
-        if (Vector3.Distance(target.transform.position, transform.position) > maxAttackDistance)
-            return;
-
-        target.GetComponent<PlayerStats>().health -= damage;
-        isAttacking = false;
-
-        if (target != null)
+        if (Vector3.Distance(target.position, transform.position) <= maxAttackDistance)
         {
-            agent.isStopped = false;
-            agent.SetDestination(target.position);
+            target.GetComponent<PlayerStats>().health -= damage;
         }
+
+        isAttacking = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Player>() != null)
+        if (target == null && other.GetComponent<Player>() != null)
+        {
             target = other.transform;
+            timeOutOfRange = 0f;
+        }
     }
 }
