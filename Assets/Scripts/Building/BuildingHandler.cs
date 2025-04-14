@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BuildingHandler : MonoBehaviour
 {
@@ -13,10 +14,23 @@ public class BuildingHandler : MonoBehaviour
     public BuildReference buildReference;
     public bool cantBuild;
     private float currentRotation = 0f;
+
+    private readonly Dictionary<string, Vector2> buildOffsets = new Dictionary<string, Vector2>()
+    {
+        { "Foundation", new Vector2(0f, 0f) },
+        { "Wall",       new Vector2(0.26f, 0.104f) },
+        { "Box",        new Vector2(0.25f, 0.1f) },
+        { "Door",       new Vector2(0.26f, 0.1f) },
+        { "DoorWay",    new Vector2(0.21f, 0.101f) },
+        { "Floor",      new Vector2(0.5f, 0f) },
+        { "Furnace",    new Vector2(0f, 0f) },
+    };
+
     public void Start()
     {
         windowHandler = GetComponentInParent<WindowHandler>();
     }
+
     private void Update()
     {
         if (!windowHandler.isOpen)
@@ -62,35 +76,31 @@ public class BuildingHandler : MonoBehaviour
         {
             if (hit.transform.GetComponent<BuildBlocked>() == null)
             {
-                if (buildReference.buildPrefab.CompareTag("Foundation"))
+                string tag = buildReference.buildPrefab.tag;
+                float up = 0f;
+                float forward = 0f;
+
+                if (buildOffsets.ContainsKey(tag))
                 {
-                    AlignToGrid(hit.point, hit.normal, 0.825f, 0f,0f);
+                    up = buildOffsets[tag].x;
+                    forward = buildOffsets[tag].y;
                 }
-                else if (buildReference.buildPrefab.CompareTag("Wall"))
+
+                if (tag == "Furnace")
                 {
-                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.26f, 0.104f);
+                    Collider[] nearby = Physics.OverlapSphere(hit.point, 0.3f);
+                    foreach (var col in nearby)
+                    {
+                        if (col.CompareTag("Foundation"))
+                        {
+                            up += 0.1f;
+                            break;
+                        }
+                    }
                 }
-                else if (buildReference.buildPrefab.CompareTag("Box"))
-                {
-                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.25f, 0.1f);
-                }
-                else if (buildReference.buildPrefab.CompareTag("Door"))
-                {
-                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.26f, 0.1f);
-                }
-                else if (buildReference.buildPrefab.CompareTag("DoorWay"))
-                {
-                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.21f, 0.101f);
-                }
-                else if (buildReference.buildPrefab.CompareTag("Floor"))
-                {
-                    AlignToGrid(hit.point, hit.normal, 0.825f, 0f, -0.2f);
-                }
-                else
-                {
-                    AlignToGrid(hit.point, hit.normal, 0.825f, 0.26f, 0f);
-                }
-                    cantBuild = true;
+
+                AlignToGrid(hit.point, hit.normal, 0.825f, up, forward);
+                cantBuild = true;
             }
             else
             {
@@ -108,13 +118,18 @@ public class BuildingHandler : MonoBehaviour
 
         CheckOverlap();
 
-        Debug.Log($"CantBuild: {cantBuild}, BuildPrefab: {buildReference.buildPrefab}");
-
         if (Input.GetMouseButtonDown(0) && cantBuild && buildReference.canBuild && buildReference.buildPrefab != null)
         {
             slotInUse.stackSize--;
             slotInUse.UpdateSlot();
-            Instantiate(buildReference.buildPrefab, buildReference.transform.position, buildReference.transform.rotation);
+            Quaternion finalRotation = buildReference.transform.rotation;
+
+            if (buildReference.buildPrefab.CompareTag("Furnace"))
+            {
+                finalRotation = Quaternion.Euler(0, 180f, 0);
+            }
+
+            Instantiate(buildReference.buildPrefab, buildReference.transform.position, finalRotation);
         }
     }
 
@@ -128,7 +143,6 @@ public class BuildingHandler : MonoBehaviour
 
         alignedPosition.y += up;
 
-        // Calcular desplazamiento hacia adelante basado en la rotación
         Vector3 forward = Quaternion.Euler(0, currentRotation, 0) * Vector3.forward;
         alignedPosition += forward * forwardOffset;
 
@@ -141,10 +155,8 @@ public class BuildingHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             currentRotation += 90f;
-            if (currentRotation >= 360f)
-            {
-                currentRotation = 0f;
-            }
+            if (currentRotation >= 360f) currentRotation = 0f;
+
             if (buildReference != null)
             {
                 buildReference.transform.rotation = Quaternion.Euler(0, currentRotation, 0);

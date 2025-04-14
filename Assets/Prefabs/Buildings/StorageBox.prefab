@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8518759712482015630}
   - component: {fileID: 3873358723752084497}
   - component: {fileID: 8312225413610604885}
+  - component: {fileID: 3533575559527825614}
+  - component: {fileID: -5092647118506287090}
   m_Layer: 0
   m_Name: StorageBox
   m_TagString: Box
@@ -51,6 +53,9 @@ MonoBehaviour:
   slotPrefab: {fileID: 2092692195005779817, guid: 64ba962e5748275449be560062965058, type: 3}
   StorageSize: 12
   opened: 0
+  dropPos: {fileID: 0}
+  dropBag: {fileID: 0}
+  isFurnace: 0
 --- !u!65 &3873358723752084497
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -84,6 +89,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6bc5b4c489748c499f0c79383833407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3533575559527825614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444931601336056927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266e3921c6ca7e943a8ec8295d10a6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 3
+  instantiate: 1
+  itemID: 0
+  itemStack: 0
+  StorageItemsID: 
+  StorageItemsStacks: 
+--- !u!208 &-5092647118506287090
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7444931601336056927}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.86, y: 0.5, z: 0.605}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.3, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &3409084513376213614
 PrefabInstance:
   m_ObjectHideFlags: 0

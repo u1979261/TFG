@@ -7,7 +7,7 @@ public class ItemSO : ScriptableObject
     public enum ItemType { Generic, Consumable, Weapon, MeleeWeapon, Building}
 
     [Header("General")]
-
+    public int ID;
     public ItemType itemType;
     public Sprite itemIcon;
     public string itemName = "New item";

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Storage : MonoBehaviour
 {
+    private bool GeneratedSlots;
     [HideInInspector]public StorageSlot[] slots;
     public StorageSlot slotPrefab;
     public int StorageSize= 12;
@@ -29,6 +30,14 @@ public class Storage : MonoBehaviour
     private void Start()
     {
         isFurnace = GetComponent<Furnace>() != null;
+        if(!GeneratedSlots)
+        {
+            GenerateSlots();
+        }
+    }
+
+    public void GenerateSlots()
+    {
         List<StorageSlot> slotList = new List<StorageSlot>();
         for (int i = 0; i < StorageSize; i++)
         {
@@ -36,6 +45,7 @@ public class Storage : MonoBehaviour
             slotList.Add(slot);
         }
         slots = slotList.ToArray();
+        GeneratedSlots = true;
     }
     public void Open(StorageUI UI)
     {

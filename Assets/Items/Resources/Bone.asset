@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
   m_Name: Bone
   m_EditorClassIdentifier: 
+  ID: 12
   itemType: 0
   itemIcon: {fileID: 21300000, guid: a32463451e439674e985d03281abf1e2, type: 3}
   itemName: Bone
@@ -41,3 +42,7 @@ MonoBehaviour:
   thirstStats: 0
   hungerStats: 0
   buildReference: {fileID: 0}
+  isFuel: 0
+  outcome: {fileID: 0}
+  outcomeAmount: 1
+  processTime: 3

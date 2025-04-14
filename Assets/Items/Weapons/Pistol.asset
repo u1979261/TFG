@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
+  ID: 25
   itemType: 2
   itemIcon: {fileID: 21300000, guid: bc130f427b32e2a4194b123de6e2fc5b, type: 3}
   itemName: M92
@@ -31,7 +32,7 @@ MonoBehaviour:
   shotgunFire: 0
   pelletsPerShot: 8
   magSize: 15
-  bulletData: {fileID: 0}
+  bulletData: {fileID: 11400000, guid: 12abbb29cfc5579449e3214eda6025de, type: 2}
   fireRate: 0.1
   shootSound: {fileID: 0}
   reloadSound: {fileID: 0}
@@ -40,3 +41,8 @@ MonoBehaviour:
   healthStats: 0
   thirstStats: 0
   hungerStats: 0
+  buildReference: {fileID: 0}
+  isFuel: 0
+  outcome: {fileID: 0}
+  outcomeAmount: 1
+  processTime: 3

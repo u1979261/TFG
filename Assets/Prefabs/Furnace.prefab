@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 96402469971883640}
   - component: {fileID: 6423640539906964263}
   - component: {fileID: 4708768501681732909}
+  - component: {fileID: 7447334678170941749}
+  - component: {fileID: 7193695502912015753}
   m_Layer: 0
   m_Name: Furnace
-  m_TagString: Untagged
+  m_TagString: Furnace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4241933508089704318}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37,7 +39,7 @@ Transform:
   - {fileID: 8256107645657646904}
   - {fileID: 3826060566933696398}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &8761559852598306960
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -150,6 +152,40 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3463349, y: 2.1945016, z: 1.4347655}
   m_Center: {x: 0, y: 1.0972508, z: -0.005751044}
+--- !u!114 &7447334678170941749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4241933508089704318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266e3921c6ca7e943a8ec8295d10a6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 4
+  instantiate: 1
+  itemID: 0
+  itemStack: 0
+  StorageItemsID: 
+  StorageItemsStacks: 
+--- !u!208 &7193695502912015753
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4241933508089704318}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.81, y: 1.097, z: 0.795}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.097, z: -0.006}
+  m_TimeToStationary: 0.5
 --- !u!1 &4449905988386576989
 GameObject:
   m_ObjectHideFlags: 0

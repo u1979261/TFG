@@ -34,8 +34,8 @@ public class InventoryManager : MonoBehaviour
     {
         _playerInput = new InputSystem_Actions();
         _playerInput.Player.Enable();
-        GenerateSlotsHotBar();
         GenerateSlots();
+        GenerateSlotsHotBar();
     }
     private void Update()
     {
@@ -99,6 +99,8 @@ public class InventoryManager : MonoBehaviour
     private void GenerateSlots()
     {
         List<Slot> inventorySlots_ = new List<Slot>();
+
+        // GENERATE SLOTS
         for (int i = 0; i < inventorySize; i++)
         { 
             Slot slot = Instantiate(slotTemplate,contentHolder).GetComponent<Slot>();
@@ -111,6 +113,14 @@ public class InventoryManager : MonoBehaviour
     {
         List<Slot> inventorySlots_ = new List<Slot>();
         List<Slot> hotBarList = new List<Slot>();
+
+        //UPDATTE HOTBAR SLOTS
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            inventorySlots_.Add(inventorySlots[i]);
+        }
+
+        // GENERATE SLOTS
         for (int i = 0; i < hotBarSize; i++)
         {
             Slot slot = Instantiate(slotTemplate, hotBarContentHolder).GetComponent<Slot>();
@@ -243,7 +253,7 @@ public class InventoryManager : MonoBehaviour
     public void DropItem(Slot slot)
     {
         GameObject modelToDrop = slot.data.specificDropModel != null ? slot.data.specificDropModel : dropModel;
-        Pickup pickup = Instantiate(modelToDrop, dropPos).AddComponent<Pickup>();
+        Pickup pickup = Instantiate(modelToDrop, dropPos).GetComponent<Pickup>();
         pickup.transform.position = dropPos.position;
         pickup.transform.SetParent(null);
 
@@ -425,7 +435,7 @@ public class InventoryManager : MonoBehaviour
 
     public void DropItem(ItemSO data, int stackSize)
     {
-        Pickup pickup = Instantiate(dropModel, dropPos).AddComponent<Pickup>();
+        Pickup pickup = Instantiate(dropModel, dropPos).GetComponent<Pickup>();
         pickup.transform.position = dropPos.position;
         pickup.transform.SetParent(null);
 

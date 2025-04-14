@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
   m_Name: Cloth
   m_EditorClassIdentifier: 
+  ID: 13
   itemType: 0
   itemIcon: {fileID: 21300000, guid: d4adf494310cb2e4594b3760e0750884, type: 3}
   itemName: Cloth
@@ -41,3 +42,7 @@ MonoBehaviour:
   thirstStats: 0
   hungerStats: 0
   buildReference: {fileID: 0}
+  isFuel: 0
+  outcome: {fileID: 0}
+  outcomeAmount: 1
+  processTime: 3

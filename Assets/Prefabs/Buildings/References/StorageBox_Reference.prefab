@@ -137,6 +137,9 @@ MonoBehaviour:
   slotPrefab: {fileID: 2092692195005779817, guid: 64ba962e5748275449be560062965058, type: 3}
   StorageSize: 12
   opened: 0
+  dropPos: {fileID: 0}
+  dropBag: {fileID: 0}
+  isFurnace: 0
 --- !u!65 &4047505409708790596
 BoxCollider:
   m_ObjectHideFlags: 0

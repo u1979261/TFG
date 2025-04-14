@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
   m_Name: M4_Bullet
   m_EditorClassIdentifier: 
+  ID: 1
   itemType: 0
   itemIcon: {fileID: 21300000, guid: 7b34976dda097f54ba00e390e2911155, type: 3}
   itemName: Rifle Bullets
   itemDescription: 5.56 Bullets
+  specificDropModel: {fileID: 0}
   isStackable: 1
   maxStack: 128
+  toolMultiplier: 1
   damage: 15
   range: 300
   horizontalRecoil: 0
@@ -25,6 +28,7 @@ MonoBehaviour:
   maxVerticalRecoil: 0
   hipSpread: 0.04
   aimSpread: 0
+  zoomFOV: 60
   shotgunFire: 0
   pelletsPerShot: 8
   magSize: 20
@@ -37,3 +41,8 @@ MonoBehaviour:
   healthStats: 10
   thirstStats: 10
   hungerStats: 10
+  buildReference: {fileID: 0}
+  isFuel: 0
+  outcome: {fileID: 0}
+  outcomeAmount: 1
+  processTime: 3

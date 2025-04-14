@@ -69,8 +69,8 @@ public class AnimalAI : MonoBehaviour
                     target = null;
                     isAttacking = false;
 
-                    agent.isStopped = true;     // Detener movimiento
-                    agent.ResetPath();          // Cancelar destino actual
+                    agent.isStopped = true;
+                    agent.ResetPath();
 
                     walk = false;
                     run = false;
@@ -180,6 +180,16 @@ public class AnimalAI : MonoBehaviour
         {
             target = other.transform;
             timeOutOfRange = 0f;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (target == null && other.GetComponent<Player>() != null)
+        {
+            target = other.transform;
+            timeOutOfRange = 0f;
+            Debug.Log("Target reacquired via OnTriggerStay");
         }
     }
 }

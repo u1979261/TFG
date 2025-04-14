@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
   m_Name: ShootGun
   m_EditorClassIdentifier: 
+  ID: 27
   itemType: 2
   itemIcon: {fileID: 21300000, guid: c7ab9b6286ec9c640ae62f9c7a3749a0, type: 3}
   itemName: Shotgun
@@ -31,7 +32,7 @@ MonoBehaviour:
   shotgunFire: 1
   pelletsPerShot: 8
   magSize: 20
-  bulletData: {fileID: 11400000, guid: 97e7e68a7abc46240b0c674080087b63, type: 2}
+  bulletData: {fileID: 11400000, guid: 74b8de5bda46beb42a745f6a14b616bf, type: 2}
   fireRate: 0.1
   shootSound: {fileID: 0}
   reloadSound: {fileID: 0}
@@ -40,3 +41,8 @@ MonoBehaviour:
   healthStats: 10
   thirstStats: 10
   hungerStats: 10
+  buildReference: {fileID: 0}
+  isFuel: 0
+  outcome: {fileID: 0}
+  outcomeAmount: 1
+  processTime: 3
