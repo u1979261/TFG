@@ -1686,7 +1686,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   health: 100
   damage: 10
-  maxChaseDistance: 60
+  maxChaseDistance: 20
   minAttackDistance: 3
   maxAttackDistance: 6
   wanderWaitTime: 7
@@ -1696,6 +1696,7 @@ MonoBehaviour:
   wanderRange: 20
   walk: 0
   run: 0
+  timeToForgetTarget: 5
 --- !u!195 &4981645839765053300
 NavMeshAgent:
   m_ObjectHideFlags: 0

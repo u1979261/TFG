@@ -6,8 +6,10 @@ public class Spawner : MonoBehaviour
     [Header("Prefabs a spawnear")]
     public GameObject[] prefabs;
 
+    [Header("Cantidad máxima por prefab (debe coincidir con el orden en 'prefabs')")]
+    public int[] maxCounts;
+
     [Header("Parámetros de spawn")]
-    public int maxCount = 50;
     public float minDistanceBetweenObjects = 3f;
 
     [Header("Zona de spawn (circular)")]
@@ -21,32 +23,38 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        foreach (GameObject prefab in prefabs)
+        for (int i = 0; i < prefabs.Length; i++)
         {
+            GameObject prefab = prefabs[i];
+            int prefabMax = maxCounts[i];
+
             activeInstances[prefab] = new List<GameObject>();
-            SpawnUntilLimit(prefab);
+            SpawnUntilLimit(prefab, prefabMax);
         }
     }
 
     void Update()
     {
-        foreach (GameObject prefab in prefabs)
+        for (int i = 0; i < prefabs.Length; i++)
         {
+            GameObject prefab = prefabs[i];
+            int prefabMax = maxCounts[i];
+
             activeInstances[prefab].RemoveAll(item => item == null);
 
-            if (activeInstances[prefab].Count < maxCount)
+            if (activeInstances[prefab].Count < prefabMax)
             {
-                SpawnUntilLimit(prefab);
+                SpawnUntilLimit(prefab, prefabMax);
             }
         }
     }
 
-    void SpawnUntilLimit(GameObject prefab)
+    void SpawnUntilLimit(GameObject prefab, int max)
     {
         int attempts = 0;
         int maxAttempts = 1000;
 
-        while (activeInstances[prefab].Count < maxCount && attempts < maxAttempts)
+        while (activeInstances[prefab].Count < max && attempts < maxAttempts)
         {
             Vector3 position = GetRandomCircularPosition();
 
@@ -71,14 +79,12 @@ public class Spawner : MonoBehaviour
 
     bool IsPositionValid(Vector3 pos, GameObject prefab)
     {
-        // 1. Verifica que no esté demasiado cerca de otros del mismo tipo
         foreach (var other in activeInstances[prefab])
         {
             if (other != null && Vector3.Distance(pos, other.transform.position) < minDistanceBetweenObjects)
                 return false;
         }
 
-        // 2. Verifica que no haya colisión con otros objetos
         if (Physics.OverlapSphere(pos, minDistanceBetweenObjects, collisionMask).Length > 0)
             return false;
 
