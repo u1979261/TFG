@@ -129,7 +129,7 @@ MonoBehaviour:
   isOn: 0
   allowedItemType: 0
   fire: {fileID: 8256107645657646911}
-  coalItem: {fileID: 0}
+  coalItem: {fileID: 11400000, guid: ca775871170fa1d41af79f7d9466929e, type: 2}
   coalAmountPerFuel: 1
 --- !u!65 &4708768501681732909
 BoxCollider:

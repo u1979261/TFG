@@ -135,6 +135,17 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
     {
         if (data == null) return;
 
+        // Si no es un objeto de construcción, desactiva la construcción activa
+        if (inventory.building.slotInUse != null && data.itemType != ItemSO.ItemType.Building)
+        {
+            inventory.building.slotInUse = null;
+
+            if (inventory.building.buildReference != null)
+            {
+                Destroy(inventory.building.buildReference.gameObject);
+            }
+        }
+
         if (data.itemType == ItemSO.ItemType.Weapon || data.itemType == ItemSO.ItemType.MeleeWeapon)
         {
             bool shouldJustUnequip = false;
@@ -170,6 +181,7 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
             Build();
         }
     }
+
 
     public void Build()
     {

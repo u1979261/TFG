@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
+  m_Name: CampFire
+  m_EditorClassIdentifier: 
+  ID: 30
+  itemType: 4
+  itemIcon: {fileID: 21300000, guid: 027b8510039d2dc4fa6a8adfb4fdb4bd, type: 3}
+  itemName: Campfire
+  itemDescription: Campfire
+  specificDropModel: {fileID: 0}
+  isStackable: 0
+  maxStack: 1
+  toolMultiplier: 1
+  damage: 15
+  range: 300
+  horizontalRecoil: 0
+  minVerticalRecoil: 0
+  maxVerticalRecoil: 0
+  hipSpread: 0.04
+  aimSpread: 0
+  zoomFOV: 60
+  shotgunFire: 0
+  pelletsPerShot: 8
+  magSize: 20
+  bulletData: {fileID: 0}
+  fireRate: 0.1
+  shootSound: {fileID: 0}
+  reloadSound: {fileID: 0}
+  takeoutSound: {fileID: 0}
+  emptySound: {fileID: 0}
+  healthStats: 10
+  thirstStats: 10
+  hungerStats: 10
+  buildReference: {fileID: 5173954523566050149, guid: 220db9cdc2cd92447bd3efd1c14be4f9, type: 3}
+  isFuel: 0
+  outcome: {fileID: 0}
+  outcomeAmount: 1
+  processTime: 3

@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
     [HideInInspector] public Slot slotEquippedOn;
     [HideInInspector] public WindowHandler windowHandler;
 
-    public GameObject bulletPrefab;
+    //public GameObject bulletPrefab;
     private Player player;
     private AudioSource audioS;
 
@@ -129,7 +129,7 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(shootPoint.position, shootDir, out hit, weaponData.range, shootableLayers))
         {
-            GameObject bulletHole = Instantiate(bulletPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+            //GameObject bulletHole = Instantiate(bulletPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
             AnimalAI animal = hit.transform.GetComponent<AnimalAI>();
             if (animal != null)
             {
@@ -176,7 +176,7 @@ public class Weapon : MonoBehaviour
             }
             if (Physics.Raycast(shootPoint.position, shootDir, out hit, weaponData.range, shootableLayers))
             {
-                GameObject bulletHole = Instantiate(bulletPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+                //GameObject bulletHole = Instantiate(bulletPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
                 AnimalAI animal = hit.transform.GetComponent<AnimalAI>();
                 if (animal != null)
                 {
