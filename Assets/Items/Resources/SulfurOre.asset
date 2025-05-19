@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
   m_Name: SulfurOre
   m_EditorClassIdentifier: 
-  ID: 20
+  ID: 21
   itemType: 0
   itemIcon: {fileID: 21300000, guid: c3fef4ed80f2ddf408d735a33346f9e0, type: 3}
   itemName: Sulfur Ore

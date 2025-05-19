@@ -168,6 +168,7 @@ public class AnimalAI : MonoBehaviour
     {
         if (Vector3.Distance(target.position, transform.position) <= maxAttackDistance)
         {
+            //target.GetComponent<PlayerStats>().Damage();
             target.GetComponent<PlayerStats>().health -= damage;
         }
 

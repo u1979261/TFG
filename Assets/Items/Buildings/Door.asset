@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
   m_Name: Door
   m_EditorClassIdentifier: 
-  ID: 5
+  ID: 6
   itemType: 4
   itemIcon: {fileID: 21300000, guid: d90de8588ed45a746b2ea68d1396b86a, type: 3}
   itemName: Door

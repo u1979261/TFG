@@ -17,4 +17,5 @@ public class SAVE_SavableObject
     //STORAGE
     public int[] StorageItemsData;
     public int[] StorageItemsStack;
+
 }

@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slots: []
   slotPrefab: {fileID: 2092692195005779817, guid: 64ba962e5748275449be560062965058, type: 3}
-  StorageSize: 3
+  StorageSize: 4
   opened: 0
   dropPos: {fileID: 5845530436620720638}
   dropBag: {fileID: 4487560762714732608, guid: ca73fbef414dd5046a97082a1c72eb0a, type: 3}

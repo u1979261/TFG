@@ -2,23 +2,48 @@ using UnityEngine;
 
 public class ResourceObject : MonoBehaviour
 {
+    public enum DeathType { Destroy, EnablePhysics}
+    public DeathType deathType;
     public ResourceDataSO [] resourceData;
     public int hits;
     public ItemSO [] prefferedTool;
+    public float forceDestruction = 100f;
 
-
+    bool hasDied;
     private void Update()
     {
-        if (hits <= 0)
+        if (hits <= 0 && !hasDied)
         {
-            Destroy(gameObject);
+            
+            if(deathType == DeathType.Destroy)
+            {
+                Destroy(gameObject);
+            }
+            else if(deathType == DeathType.EnablePhysics)
+            {
+               if(GetComponent<Rigidbody>() != null)
+               {
+                    GetComponent<Rigidbody>().isKinematic = false;
+                    GetComponent<Rigidbody>().useGravity = true;
+
+                    GetComponent<Rigidbody>().AddTorque(Vector3.right * 100);
+                    Destroy(gameObject, 5f);
+                }
+               else
+                    Destroy(gameObject);
+            }
+            hasDied = true;
         }
     }
 
     public void Recolect(ItemSO toolUsed, InventoryManager invetory)
     {
-        //bool usingRightTool = false;
+        
         float finalMultiplier = 0f;
+        if (hits <= 0)
+        {
+            return;
+        }
 
         //CHECK IF THE TOOL USED IS THE RIGHT ONE
         if (prefferedTool.Length > 0)

@@ -27,17 +27,40 @@ public class PlayerStats : MonoBehaviour
     public StatsBar healthBar;
     public StatsBar hungerBar;
     public StatsBar thirstBar;
+
+    [Header("Blood UI")]
+    public Image bloodImage;
+    private float r;
+    private float g;
+    private float b;
+    private float a;
+    private float minAlpha = 0f;
+    private float maxAlpha = 0.9f;
+
     private void Start()
     {
         health = maxHealth;
         hunger = maxhunger;
         thirst = maxThirst;
+
+        r = bloodImage.color.r;
+        g = bloodImage.color.g;
+        b = bloodImage.color.b;
+        a = bloodImage.color.a;
     }
 
     private void Update()
     {
         UpdateStats();
         UpdateUI();
+        if(health <= 0f)
+        {
+            GetComponent<PlayerRespawn>().Die();
+            health = maxHealth;
+            hunger = maxhunger;
+            thirst = maxThirst;
+
+        }
     }
     private void UpdateUI()
     { 
@@ -49,6 +72,9 @@ public class PlayerStats : MonoBehaviour
 
         thirstBar.numberText.text = thirst.ToString("f0");
         thirstBar.bar.fillAmount = thirst / 100;
+        float t = 1f - (health / maxHealth);
+        float newAlpha = Mathf.Lerp(minAlpha, maxAlpha, t);
+        bloodImage.color = new Color(r, g, b, newAlpha);
 
     }
 

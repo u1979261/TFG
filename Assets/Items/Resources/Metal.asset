@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
   m_Name: Metal
   m_EditorClassIdentifier: 
-  ID: 16
+  ID: 17
   itemType: 0
   itemIcon: {fileID: 21300000, guid: e102e10a023c41a4ab9fb9a1d8141b92, type: 3}
   itemName: Metal Ore

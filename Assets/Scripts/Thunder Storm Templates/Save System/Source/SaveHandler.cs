@@ -94,6 +94,7 @@ public class SaveHandler : MonoBehaviour
             // IF THE OBJECT IS NOT FOUND THAN JUST RETURN
             if (obj == null)
             {
+                Debug.LogError(obj);
                 Debug.LogError($"SAVE SYSTEM : The object to load was not found, make sure the object is in the Savable Objects list of SaveHandler");
                 return;
             }
@@ -186,7 +187,7 @@ public class SaveHandler : MonoBehaviour
             save.itemStack = obj.itemStack;
 
             //STORAGE ITEMS
-            if(obj.GetComponent<Storage>() != null)
+            if (obj.GetComponent<Storage>() != null)
             {
                 List<int> datas = new List<int>();
                 List<int> stacks = new List<int>();

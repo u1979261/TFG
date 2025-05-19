@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class InteractionHandler :MonoBehaviour
 {
     public float interactionDistance = 4.5f;
     private InputSystem_Actions _playerInput;
 
+    public TextMeshProUGUI interactText;
 
     private void Start()
     {
@@ -12,11 +15,8 @@ public class InteractionHandler :MonoBehaviour
         _playerInput.Player.Enable();
     }
     private void Update()
-    {
-        if (_playerInput.Player.Interact.WasPressedThisFrame())
-        {
-            Interact();
-        }
+    {   
+        Interact();   
     }
 
     private void Interact()
@@ -44,18 +44,51 @@ public class InteractionHandler :MonoBehaviour
         {
             Pickup pickup = hitObject.transform.GetComponent<Pickup>();
             Storage storage = hitObject.transform.GetComponent<Storage>();
+            Bed bed = hitObject.transform.GetComponent<Bed>();
+            Debug.Log(hitObject.transform.name);
 
-            if (pickup != null)
+            if (_playerInput.Player.Interact.WasPressedThisFrame())
             {
-                windowHandler.inventory.AddItem(pickup);
+                if (pickup != null)
+                {
+                    windowHandler.inventory.AddItem(pickup);
+                }
+
+                if (bed != null)
+                {
+                    bed.SaveBed();
+                }
+
+                if (storage != null && !storage.opened)
+                {
+                    windowHandler.inventory.opened = true;
+                    storage.Open(windowHandler.storage);
+                }
             }
-
-            if (storage != null && !storage.opened)
+            if (pickup != null || storage != null || bed != null)
             {
-                windowHandler.inventory.opened = true;
-                storage.Open(windowHandler.storage);
+                interactText.gameObject.SetActive(true);
+                if (pickup != null)
+                {
+                    interactText.text = $"Pickup x{pickup.stackSize} {pickup.data.itemName}";
+                }
+                if (storage != null)
+                {
+                    interactText.text = $"Open";
+                }
+                if (bed != null)
+                {
+                    interactText.text = $"Sleep";
+                }
+            }
+            else
+            {
+                interactText.gameObject.SetActive(false);
             }
         }
+        else
+        {
+            interactText.gameObject.SetActive(false);
+        }
     }
-
 }
