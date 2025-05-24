@@ -538,6 +538,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1820534844056857092, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820534844056857092, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c7271fca719a11c4d9e236fd6e9745a8, type: 2}
     - target: {fileID: 2847067207204692245, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
       propertyPath: bulletPrefab
       value: 
@@ -630,11 +638,32 @@ PrefabInstance:
       propertyPath: _runSpeed
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6308653512058274112, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: defaultSpawnPoint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308653512058274112, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: defaultSpawnPoint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308653512058274112, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: defaultSpawnPoint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678746869238259224, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: bloodImage
+      value: 
+      objectReference: {fileID: 346655186}
+    - target: {fileID: 8678746869238259224, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: booldImage
+      value: 
+      objectReference: {fileID: 346655186}
     - target: {fileID: 9029300724095307102, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6308653512058274112, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -650,6 +679,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266e3921c6ca7e943a8ec8295d10a6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &346655186 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8912868798176063512, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+  m_PrefabInstance: {fileID: 346655184}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &736280870
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -49,6 +49,14 @@ public class Player : MonoBehaviour
         _playerInput = new InputSystem_Actions();
     }
 
+    private void OnDestroy()
+    {
+        if (_playerInput != null)
+        {
+            _playerInput.Dispose();
+            _playerInput = null;
+        }
+    }
     private void OnEnable()
     {
         // Enable Input Actions

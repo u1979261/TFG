@@ -13,7 +13,7 @@ public class CameraLook : MonoBehaviour
     [HideInInspector] public bool lockCursor = true;
 
     [Header("Sensitivity")]
-    [Range(1, 10)]
+    [Range(1, 200)]
     public float sensitivity = 5f;
 
     [Header("Limits")]
@@ -32,15 +32,16 @@ public class CameraLook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sensitivity = Settings.sens;
         horizontalRot = player.transform.rotation.y;
 
-        sensitivity *= 20;
+        //sensitivity *= 20;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        sensitivity = Settings.sens;
         GetMouseMovement();
 
 

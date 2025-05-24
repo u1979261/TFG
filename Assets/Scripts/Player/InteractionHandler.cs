@@ -18,7 +18,19 @@ public class InteractionHandler :MonoBehaviour
     {   
         Interact();   
     }
+    private void OnDisable()
+    {
+        _playerInput.Player.Disable();
+    }
 
+    private void OnDestroy()
+    {
+        if (_playerInput != null)
+        {
+            _playerInput.Dispose();
+            _playerInput = null;
+        }
+    }
     private void Interact()
     {
         WindowHandler windowHandler = GetComponentInParent<WindowHandler>();
@@ -28,8 +40,6 @@ public class InteractionHandler :MonoBehaviour
 
         foreach (RaycastHit hit in hits)
         {
-            Debug.Log(hit.transform.name);
-
             // Buscar componente Door en el objeto o en sus padres
             Door door = hit.transform.GetComponent<Door>() ?? hit.transform.GetComponentInParent<Door>();
             if (door != null)

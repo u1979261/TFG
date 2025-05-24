@@ -10,11 +10,13 @@ public class CameraFOV_Handler : MonoBehaviour
     private void Start()
     {
         cam = GetComponent<Camera>();
-        defaultFOV = cam.fieldOfView;
+        defaultFOV = Settings.fov;
+        cam.fieldOfView = defaultFOV;
     }
 
     private void Update()
     {
+        defaultFOV = Settings.fov;
         if (weapon != null)
         {
             if (weapon.isAiming)

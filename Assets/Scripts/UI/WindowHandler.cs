@@ -6,6 +6,8 @@ public class WindowHandler : MonoBehaviour
     [HideInInspector] public CraftingManager crafting;
     [HideInInspector] public StorageUI storage;
     [HideInInspector] public BuildingHandler building;
+    [HideInInspector] public GameMenu gameMenu;
+    public GameObject bloodImage;
     public bool isOpen;
 
     private CameraLook _camera;
@@ -17,6 +19,7 @@ public class WindowHandler : MonoBehaviour
         inventory = GetComponentInChildren<InventoryManager>();
         crafting = GetComponentInChildren<CraftingManager>();
         building = GetComponentInChildren<BuildingHandler>();
+        gameMenu = FindAnyObjectByType<GameMenu>();
     }
 
     private void Update()
@@ -31,7 +34,15 @@ public class WindowHandler : MonoBehaviour
             _camera.lockCursor = true;
             _camera.canMove = true;
         }
-        if (inventory.opened)
+        if (gameMenu.opened)
+        {
+            bloodImage.SetActive(false);
+        }
+        else
+        {
+            bloodImage.SetActive(true);
+        }
+        if (inventory.opened || gameMenu.opened)
         {
             isOpen = true;
         }

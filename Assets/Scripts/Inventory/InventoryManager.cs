@@ -95,7 +95,15 @@ public class InventoryManager : MonoBehaviour
     {
         _playerInput.Player.Disable();
     }
-    
+    private void OnDestroy()
+    {
+        if (_playerInput != null)
+        {
+            _playerInput.Player.Disable();
+            _playerInput.Dispose();
+            _playerInput = null;
+        }
+    }
     private void GenerateSlots()
     {
         List<Slot> inventorySlots_ = new List<Slot>();

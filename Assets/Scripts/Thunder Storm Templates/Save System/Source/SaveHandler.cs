@@ -5,10 +5,16 @@ using System.IO;
 
 public class SaveHandler : MonoBehaviour
 {
+    public static bool loaded = false;
     [Header("Savable Objects")]
     [Tooltip("You must drag here every savable object that you wish to load")]
     public List<SavableObject> savableObjects;
 
+    private void Start()
+    {
+        if(loaded)
+            Load();
+    }
     public void Load()
     {
         // CHECK THAT DIRECTORY & FILE HAVE BEEN CREATED
