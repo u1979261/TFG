@@ -68,6 +68,9 @@ public class GameMenu : MonoBehaviour
 
         saveGameButton.gameObject.SetActive(true);
         backToMainMenuButton.gameObject.SetActive(true);
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f; // valor por defecto
+        Physics.gravity = new Vector3(0, -6.5f, 0);
         SceneManager.LoadScene(1);
     }
 

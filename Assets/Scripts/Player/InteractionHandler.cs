@@ -44,7 +44,8 @@ public class InteractionHandler :MonoBehaviour
             Door door = hit.transform.GetComponent<Door>() ?? hit.transform.GetComponentInParent<Door>();
             if (door != null)
             {
-                door.ToggleDoor();
+                if(Input.GetKeyDown(KeyCode.E))
+                    door.ToggleDoor();
                 return;
             }
         }

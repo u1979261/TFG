@@ -15,8 +15,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float _crouchTransitionSpeed = 5f;
     [SerializeField] private float _gravity = -7f;
 
-    private float _gravityAcceleration;
-
     private Vector2 _movementInput;
     private bool _isRunning;
     private bool _isCrouching;
@@ -42,10 +40,6 @@ public class Player : MonoBehaviour
         _player = GetComponent<CharacterController>();
         _camera = GetComponentInChildren<CameraLook>();
         _audioSource = GetComponent<AudioSource>();
-
-        _gravityAcceleration = _gravity * _gravity;
-        _gravityAcceleration *= Time.deltaTime;
-        
         _playerInput = new InputSystem_Actions();
     }
 
@@ -57,15 +51,14 @@ public class Player : MonoBehaviour
             _playerInput = null;
         }
     }
+
     private void OnEnable()
     {
-        // Enable Input Actions
         _playerInput.Player.Move.Enable();
         _playerInput.Player.Run.Enable();
         _playerInput.Player.Crouch.Enable();
         _playerInput.Player.Jump.Enable();
 
-        // Bind Inputs
         _playerInput.Player.Move.performed += Move;
         _playerInput.Player.Move.canceled += Move;
         _playerInput.Player.Run.performed += ctx => _isRunning = true;
@@ -77,13 +70,11 @@ public class Player : MonoBehaviour
 
     private void OnDisable()
     {
-        // Disable Input Actions
         _playerInput.Player.Move.Disable();
         _playerInput.Player.Run.Disable();
         _playerInput.Player.Crouch.Disable();
         _playerInput.Player.Jump.Disable();
 
-        // Unbind Inputs
         _playerInput.Player.Move.performed -= Move;
         _playerInput.Player.Move.canceled -= Move;
         _playerInput.Player.Run.performed -= ctx => _isRunning = true;
@@ -103,43 +94,35 @@ public class Player : MonoBehaviour
         if (crouching)
         {
             if (currentCrouchLenght < crouchStepLength)
-            {
                 currentCrouchLenght += Time.deltaTime;
-            }
             else
             {
                 currentCrouchLenght = 0;
                 _audioSource.PlayOneShot(GetFootstepSound());
-                
             }
         }
         else if (walking)
         {
             if (currentWalkLenght < walkStepLength)
-            {
                 currentWalkLenght += Time.deltaTime;
-            }
             else
             {
                 currentWalkLenght = 0;
                 _audioSource.PlayOneShot(GetFootstepSound());
-
             }
         }
         else if (running)
         {
             if (currentRunLenght < runStepLength)
-            {
                 currentRunLenght += Time.deltaTime;
-            }
             else
             {
                 currentRunLenght = 0;
                 _audioSource.PlayOneShot(GetFootstepSound());
-
             }
         }
     }
+
     private void FixedUpdate()
     {
         HandleMovement();
@@ -148,42 +131,32 @@ public class Player : MonoBehaviour
     private void HandleMovement()
     {
         Vector3 moveDirection = new Vector3(_movementInput.x, 0, _movementInput.y);
-
-        // Determinar si el jugador se está moviendo
         bool isMoving = _movementInput.sqrMagnitude > 0;
-        if (!isMoving)
-        {
-            running = false;
-            crouching = false;
-            walking = false;
-        }
-        else {
-            running = false;
-            crouching = false;
-            walking = true;
-        }
+
+        running = crouching = walking = false;
+
         float speed = _walkSpeed;
-        if (_isRunning && isMoving && !_isCrouching) // Solo correr si se mueve
+
+        if (_isRunning && isMoving && !_isCrouching)
         {
             speed = _runSpeed;
             running = true;
-            walking = false;
-            crouching = false;
         }
         else if (_isCrouching && isMoving)
         {
-            running = false;
-            crouching = true;
-            walking = false;
             speed = _crouchSpeed;
+            crouching = true;
+        }
+        else if (isMoving)
+        {
+            walking = true;
         }
 
         moveDirection = transform.TransformDirection(moveDirection) * speed;
 
-        // Aplicar transición de agachado
         HandleCrouch();
 
-        // Salto y gravedad
+        // Gravedad y salto correctamente aplicados por frame
         if (_player.isGrounded)
         {
             _yVelocity = 0;
@@ -195,8 +168,9 @@ public class Player : MonoBehaviour
         }
         else
         {
-            _yVelocity -= _gravityAcceleration;
+            _yVelocity += _gravity * Time.fixedDeltaTime;
         }
+
         moveDirection.y = _yVelocity;
 
         _player.Move(moveDirection * Time.deltaTime);
@@ -223,8 +197,6 @@ public class Player : MonoBehaviour
         if (_player == null) return null;
 
         RaycastHit hit;
-
-        // Primero, un Raycast para máxima precisión
         if (Physics.Raycast(_player.transform.position, Vector3.down, out hit, _player.bounds.extents.y + 0.3f) ||
             Physics.SphereCast(_player.transform.position, 0.2f, Vector3.down, out hit, _player.bounds.extents.y + 0.3f))
         {
@@ -236,6 +208,7 @@ public class Player : MonoBehaviour
                 return surface.surface.footstepSounds[i];
             }
         }
+
         return null;
     }
 

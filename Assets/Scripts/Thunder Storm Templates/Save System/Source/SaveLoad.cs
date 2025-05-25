@@ -12,13 +12,13 @@ public class SaveLoad : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            saveHandler.Save();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            saveHandler.Load();
-        }
+        //if (Input.GetKeyDown(KeyCode.G))
+        //{
+        //    saveHandler.Save();
+        //}
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    saveHandler.Load();
+        //}
     }
 }

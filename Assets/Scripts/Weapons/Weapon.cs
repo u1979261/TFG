@@ -376,14 +376,14 @@ public class Weapon : MonoBehaviour
     public void Equip(Slot slot)
     {
         gameObject.SetActive(true);
-        GetComponentInParent<CameraFOV_Handler>().weapon = this;
+        GetComponentInParent<Player>().GetComponentInChildren<CameraFOV_Handler>().weapon = this;
         slotEquippedOn = slot;
         slot.weaponEquippedOn = this;
         transform.localPosition = hipPos;
     }
     public void UnEquip()
     {
-        GetComponentInParent<CameraFOV_Handler>().weapon = null;
+        GetComponentInParent<Player>().GetComponentInChildren<CameraFOV_Handler>().weapon = null;
         slotEquippedOn.weaponEquippedOn = null;
         slotEquippedOn = null;
 

@@ -36,7 +36,6 @@ public class SettingsMenu : MonoBehaviour
 
     public void ApplyChanges()
     {
-        Debug.Log((int)Settings.graphicsQuality);
         QualitySettings.SetQualityLevel((int)Settings.graphicsQuality);
     }
 
