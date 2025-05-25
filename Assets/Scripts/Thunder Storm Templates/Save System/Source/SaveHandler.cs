@@ -12,8 +12,7 @@ public class SaveHandler : MonoBehaviour
 
     private void Start()
     {
-        if(loaded)
-            Load();
+        Invoke("Load", 0.3f);
     }
     public void Load()
     {

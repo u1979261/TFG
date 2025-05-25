@@ -34,19 +34,32 @@ public class WindowHandler : MonoBehaviour
             _camera.lockCursor = true;
             _camera.canMove = true;
         }
-        if (gameMenu.opened)
+        if (gameMenu != null)
         {
-            bloodImage.SetActive(false);
+
+            if (inventory.opened || gameMenu.opened)
+            {
+                isOpen = true;
+                bloodImage.SetActive(false);
+            }
+            else
+            {
+                isOpen = false;
+                bloodImage.SetActive(true);
+            }
         }
         else
         {
-            bloodImage.SetActive(true);
+            if (inventory.opened)
+            {
+                isOpen = true;
+                bloodImage.SetActive(false);
+            }
+            else
+            {
+                isOpen = false;
+                bloodImage.SetActive(true);
+            }
         }
-        if (inventory.opened || gameMenu.opened)
-        {
-            isOpen = true;
-        }
-        else
-            isOpen = false;
     }
 }
