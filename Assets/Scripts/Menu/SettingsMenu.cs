@@ -36,7 +36,19 @@ public class SettingsMenu : MonoBehaviour
 
     public void ApplyChanges()
     {
-        QualitySettings.SetQualityLevel((int)Settings.graphicsQuality);
+        string qualityName = graphicsQuality.options[graphicsQuality.value].text;
+
+        int levelIndex = System.Array.IndexOf(QualitySettings.names, qualityName);
+
+        if (levelIndex != -1)
+        {
+            QualitySettings.SetQualityLevel(levelIndex, true); // true = aplica inmediatamente
+            Debug.Log("Calidad cambiada a: " + qualityName);
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró el nivel de calidad: " + qualityName);
+        }
     }
 
     public void SoundControll(float slider)

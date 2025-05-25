@@ -34,32 +34,34 @@ public class WindowHandler : MonoBehaviour
             _camera.lockCursor = true;
             _camera.canMove = true;
         }
-        if (gameMenu != null)
-        {
 
-            if (inventory.opened || gameMenu.opened)
-            {
-                isOpen = true;
-                bloodImage.SetActive(false);
-            }
-            else
-            {
-                isOpen = false;
-                bloodImage.SetActive(true);
-            }
+        if (gameMenu != null && gameMenu.opened)
+        {
+            // Desactivar todo cuando el menú está abierto
+            if (inventory != null) inventory.inventoryPanel.SetActive(false);
+            if (inventory != null && inventory.hotBarContentHolder != null) inventory.hotBarContentHolder.gameObject.SetActive(false);
+            if (crafting != null) crafting.gameObject.SetActive(false);
+            isOpen = true;
+            bloodImage.SetActive(false);
+            return;
+        }
+
+        // Lógica normal para inventario/crafting
+        if (inventory != null && inventory.opened)
+        {
+            inventory.inventoryPanel.SetActive(true);
+            if (inventory.hotBarContentHolder != null) inventory.hotBarContentHolder.gameObject.SetActive(true);
+            if (crafting != null) crafting.gameObject.SetActive(true);
+            isOpen = true;
+            bloodImage.SetActive(false);
         }
         else
         {
-            if (inventory.opened)
-            {
-                isOpen = true;
-                bloodImage.SetActive(false);
-            }
-            else
-            {
-                isOpen = false;
-                bloodImage.SetActive(true);
-            }
+            if (inventory != null) inventory.inventoryPanel.SetActive(false);
+            if (inventory.hotBarContentHolder != null) inventory.hotBarContentHolder.gameObject.SetActive(true);
+            if (crafting != null) crafting.gameObject.SetActive(false);
+            isOpen = false;
+            bloodImage.SetActive(true);
         }
     }
 }
