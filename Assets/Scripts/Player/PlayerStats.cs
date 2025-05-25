@@ -118,7 +118,7 @@ public class PlayerStats : MonoBehaviour
             {
                 health -= hungerDamage;
             }
-            //health -= hungerDamage * Time.deltaTime;
+            health -= hungerDamage * Time.deltaTime;
         }
         if (thirst <= 0)
         {
@@ -127,7 +127,7 @@ public class PlayerStats : MonoBehaviour
             {
                 health -= thirstDamage;
             }
-            //health -= thirstDamage * Time.deltaTime;
+            health -= thirstDamage * Time.deltaTime;
         }
 
         //--DAMAGES--//
@@ -138,7 +138,7 @@ public class PlayerStats : MonoBehaviour
             {
                 hunger -= hungerReduction;
             }
-            //hunger -= hungerReduction * Time.deltaTime;
+            hunger -= hungerReduction * Time.deltaTime;
         }
         if (thirst > 0)
         {
@@ -147,7 +147,7 @@ public class PlayerStats : MonoBehaviour
             {
                 thirst -= thirstReduction;
             }
-            //thirst -= thirstReduction * Time.deltaTime;
+            thirst -= thirstReduction * Time.deltaTime;
         }
 
     }

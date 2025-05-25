@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 949557657996441800}
   - component: {fileID: 4338473326248408907}
   - component: {fileID: 5897358638140809753}
+  - component: {fileID: 6705448756542429223}
   m_Layer: 0
   m_Name: Pine_B
   m_TagString: Untagged
@@ -104,11 +105,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488542974aa9f3c4e980175300936330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathType: 1
   resourceData:
   - {fileID: 11400000, guid: 87ec15377843fe1438d6a5103d9f583a, type: 2}
   hits: 10
   prefferedTool:
   - {fileID: 11400000, guid: 258317a2637ac7049acc76e9de84e36b, type: 2}
+  - {fileID: 11400000, guid: 46db550ba050696469343aaacf2c7e1e, type: 2}
+  forceDestruction: 100
 --- !u!208 &5897358638140809753
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -125,6 +129,33 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1.6, z: 0}
   m_TimeToStationary: 0.5
+--- !u!54 &6705448756542429223
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127992084609228112}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1795786543020778604
 GameObject:
   m_ObjectHideFlags: 0

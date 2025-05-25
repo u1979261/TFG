@@ -1754,6 +1754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488542974aa9f3c4e980175300936330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathType: 0
   resourceData:
   - {fileID: 11400000, guid: f22a8c63c80969f4e9b03a2781136746, type: 2}
   - {fileID: 11400000, guid: fded78078feb9bb48bcc14adbb5ec7da, type: 2}
@@ -1761,6 +1762,9 @@ MonoBehaviour:
   hits: 5
   prefferedTool:
   - {fileID: 11400000, guid: e57eeaf093ff1dd4fa3efd80778de030, type: 2}
+  - {fileID: 11400000, guid: 46db550ba050696469343aaacf2c7e1e, type: 2}
+  - {fileID: 11400000, guid: 258317a2637ac7049acc76e9de84e36b, type: 2}
+  forceDestruction: 100
 --- !u!65 &4254145896573237495
 BoxCollider:
   m_ObjectHideFlags: 0

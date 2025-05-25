@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
+  m_Name: Wold Raw Meat
+  m_EditorClassIdentifier: 
+  ID: 50
+  itemType: 1
+  itemIcon: {fileID: 21300000, guid: b5b80f78bb2fc5b4287aabb34ab6111c, type: 3}
+  itemName: Wold Raw Meat
+  itemDescription: Wold Raw Meat
+  specificDropModel: {fileID: 0}
+  isStackable: 1
+  maxStack: 16
+  toolMultiplier: 1
+  damage: 15
+  range: 300
+  horizontalRecoil: 0
+  minVerticalRecoil: 0
+  maxVerticalRecoil: 0
+  hipSpread: 0.04
+  aimSpread: 0
+  zoomFOV: 60
+  shotgunFire: 0
+  pelletsPerShot: 8
+  magSize: 20
+  bulletData: {fileID: 0}
+  fireRate: 0.1
+  shootSound: {fileID: 0}
+  reloadSound: {fileID: 0}
+  takeoutSound: {fileID: 0}
+  emptySound: {fileID: 0}
+  healthStats: -5
+  thirstStats: -10
+  hungerStats: 5
+  buildReference: {fileID: 0}
+  isFuel: 0
+  outcome: {fileID: 11400000, guid: d58af3a8106bd6c4a8c970477c8beff9, type: 2}
+  outcomeAmount: 1
+  processTime: 5
