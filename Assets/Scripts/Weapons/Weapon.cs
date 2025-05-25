@@ -113,6 +113,8 @@ public class Weapon : MonoBehaviour
             return;
         }
 
+        GetComponentInParent<Animator>().SetTrigger("Shake");
+
         RaycastHit hit;
         Vector3 shootDir = shootPoint.forward;
 
@@ -159,6 +161,8 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
+
+        GetComponentInParent<Animator>().SetTrigger("Shake");
         for (int i = 0; i < weaponData.pelletsPerShot; i++)
         {
             RaycastHit hit;
@@ -350,6 +354,7 @@ public class Weapon : MonoBehaviour
     public void ExecuteHit()
     {
         RaycastHit hit;
+        GetComponentInParent<Animator>().SetTrigger("Shake");
         if (Physics.SphereCast(shootPoint.position, 0.2f, shootPoint.forward, out hit, weaponData.range, shootableLayers))
         {
             ResourceObject resourceObj = hit.transform.GetComponent<ResourceObject>();

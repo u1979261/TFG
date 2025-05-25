@@ -36,6 +36,8 @@ public class PlayerStats : MonoBehaviour
     private float a;
     private float minAlpha = 0f;
     private float maxAlpha = 0.9f;
+    private float lastDamageTime = -100f;
+    private bool recentlyDamaged = false;
 
     private void Start()
     {
@@ -53,7 +55,12 @@ public class PlayerStats : MonoBehaviour
     {
         UpdateStats();
         UpdateUI();
-        if(health <= 0f)
+        if (recentlyDamaged && Time.time - lastDamageTime > 10f)
+        {
+            bloodImage.color = new Color(r, g, b, 0f);
+            recentlyDamaged = false;
+        }
+        if (health <= 0f)
         {
             GetComponent<PlayerRespawn>().Die();
             health = maxHealth;
@@ -72,12 +79,19 @@ public class PlayerStats : MonoBehaviour
 
         thirstBar.numberText.text = thirst.ToString("f0");
         thirstBar.bar.fillAmount = thirst / 100;
-        float t = 1f - (health / maxHealth);
-        float newAlpha = Mathf.Lerp(minAlpha, maxAlpha, t);
-        bloodImage.color = new Color(r, g, b, newAlpha);
+        if (recentlyDamaged)
+        {
+            float t = 1f - (health / maxHealth);
+            float newAlpha = Mathf.Lerp(minAlpha, maxAlpha, t);
+            bloodImage.color = new Color(r, g, b, newAlpha);
+        }
 
     }
-
+    public void OnTakeDamage()
+    {
+        lastDamageTime = Time.time;
+        recentlyDamaged = true;
+    }
     public void UpdateStats()
     {
         //--STATS--//

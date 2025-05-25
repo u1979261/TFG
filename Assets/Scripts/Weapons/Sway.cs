@@ -11,7 +11,6 @@ public class Sway : MonoBehaviour
     public bool invertVertical;
     public bool lockSway;
 
-
     [Header("Position")]
     public float amount = 0.02f;
     public float maxAmount = 0.06f;
@@ -27,10 +26,8 @@ public class Sway : MonoBehaviour
     public bool rotationY = true;
     public bool rotationZ = true;
 
-
     Vector3 initialPosition;
     Quaternion initialRotation;
-
 
     float InputX;
     float InputY;
@@ -38,7 +35,7 @@ public class Sway : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cam = FindObjectOfType<CameraLook>();
+        cam = FindFirstObjectByType<CameraLook>();
         windowHandler = GetComponentInParent<WindowHandler>();
 
         initialPosition = transform.localPosition;
@@ -56,13 +53,10 @@ public class Sway : MonoBehaviour
         else
             InputY = 0;
 
-
-
         if (cam.canMove && !lockSway && !GetComponentInParent<Weapon>().isAiming && !windowHandler.isOpen)
             CalculateHorizontalSway();
         else
             InputX = 0;
-
     }
 
     void CalculateVerticalSway()
@@ -70,9 +64,8 @@ public class Sway : MonoBehaviour
         InputY = -Input.GetAxis("Mouse Y");
     }
 
-
     void CalculateHorizontalSway()
-    { 
+    {
         InputX = -Input.GetAxis("Mouse X");
     }
 

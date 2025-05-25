@@ -14,7 +14,7 @@ public class CameraLook : MonoBehaviour
 
     [Header("Sensitivity")]
     [Range(1, 200)]
-    public float sensitivity = 5f;
+    public float sensitivity = 150f;
 
     [Header("Limits")]
     public float verticalTopLimit = -90f;
@@ -34,8 +34,6 @@ public class CameraLook : MonoBehaviour
     {
         sensitivity = Settings.sens;
         horizontalRot = player.transform.rotation.y;
-
-        //sensitivity *= 20;
     }
 
     // Update is called once per frame

@@ -170,6 +170,7 @@ public class AnimalAI : MonoBehaviour
         {
             //target.GetComponent<PlayerStats>().Damage();
             target.GetComponent<PlayerStats>().health -= damage;
+            target.GetComponent<PlayerStats>().OnTakeDamage();
         }
 
         isAttacking = false;
