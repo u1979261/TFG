@@ -434,6 +434,7 @@ MonoBehaviour:
   prefferedTool:
   - {fileID: 11400000, guid: 258317a2637ac7049acc76e9de84e36b, type: 2}
   - {fileID: 11400000, guid: 46db550ba050696469343aaacf2c7e1e, type: 2}
+  - {fileID: 11400000, guid: 1f39013d5e3bdcf45ab4c254751df62e, type: 2}
   forceDestruction: 100
 --- !u!208 &2818899605255954177
 NavMeshObstacle:

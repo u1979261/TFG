@@ -17,7 +17,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: c98384d19f52a3541b972485d828a1cb, type: 3}
   itemName: M4
   itemDescription: MATAAAAAAAAAR
-  specificDropModel: {fileID: 0}
+  specificDropModel: {fileID: 5438566914975819340, guid: 2fb5835cc2af47746ad90d4579ffede9, type: 3}
   isStackable: 0
   maxStack: 1
   toolMultiplier: 0

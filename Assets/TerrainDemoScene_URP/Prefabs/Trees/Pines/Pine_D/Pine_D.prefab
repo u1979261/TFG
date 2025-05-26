@@ -521,8 +521,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488542974aa9f3c4e980175300936330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathType: 0
   resourceData:
   - {fileID: 11400000, guid: 87ec15377843fe1438d6a5103d9f583a, type: 2}
   hits: 10
   prefferedTool:
   - {fileID: 11400000, guid: 258317a2637ac7049acc76e9de84e36b, type: 2}
+  - {fileID: 11400000, guid: 1f39013d5e3bdcf45ab4c254751df62e, type: 2}
+  - {fileID: 11400000, guid: 46db550ba050696469343aaacf2c7e1e, type: 2}
+  forceDestruction: 100

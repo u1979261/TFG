@@ -17,7 +17,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: c7ab9b6286ec9c640ae62f9c7a3749a0, type: 3}
   itemName: Shotgun
   itemDescription: Shotgun
-  specificDropModel: {fileID: 556556308797390888, guid: e8a34433d51dd5e4b870d0e1ec81023e, type: 3}
+  specificDropModel: {fileID: 7737518233398051808, guid: d800ca99f9cc5894ab4dc4cad4b423a2, type: 3}
   isStackable: 0
   maxStack: 1
   toolMultiplier: 0

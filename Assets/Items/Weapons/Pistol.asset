@@ -17,7 +17,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: bc130f427b32e2a4194b123de6e2fc5b, type: 3}
   itemName: M92
   itemDescription: Bot Pistol
-  specificDropModel: {fileID: 0}
+  specificDropModel: {fileID: 6921941078683031962, guid: c4edc1ddff028a548ac72583e9ccd2e1, type: 3}
   isStackable: 0
   maxStack: 1
   toolMultiplier: 0

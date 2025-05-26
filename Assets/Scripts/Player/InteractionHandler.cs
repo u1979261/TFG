@@ -6,11 +6,13 @@ public class InteractionHandler :MonoBehaviour
 {
     public float interactionDistance = 4.5f;
     private InputSystem_Actions _playerInput;
-
+    private AudioSource audioS;
+    public AudioClip pickupSound;
     public TextMeshProUGUI interactText;
 
     private void Start()
     {
+        audioS = GetComponent<AudioSource>();
         _playerInput = new InputSystem_Actions();
         _playerInput.Player.Enable();
     }
@@ -62,7 +64,12 @@ public class InteractionHandler :MonoBehaviour
             {
                 if (pickup != null)
                 {
+
                     windowHandler.inventory.AddItem(pickup);
+                    if (pickupSound != null && audioS != null)
+                    {
+                        audioS.PlayOneShot(pickupSound);
+                    }
                 }
 
                 if (bed != null)

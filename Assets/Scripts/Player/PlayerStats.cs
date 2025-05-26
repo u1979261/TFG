@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
-    [Header ("Stats")]
+    [Header("Stats")]
     public float health;
     public float maxHealth = 100f;
 
@@ -39,6 +39,12 @@ public class PlayerStats : MonoBehaviour
     private float lastDamageTime = -100f;
     private bool recentlyDamaged = false;
 
+    // Temporizadores internos
+    private float hungerTimer = 0f;
+    private float thirstTimer = 0f;
+    private float hungerDamageTimer = 0f;
+    private float thirstDamageTimer = 0f;
+
     private void Start()
     {
         health = maxHealth;
@@ -55,100 +61,86 @@ public class PlayerStats : MonoBehaviour
     {
         UpdateStats();
         UpdateUI();
+
         if (recentlyDamaged && Time.time - lastDamageTime > 10f)
         {
             bloodImage.color = new Color(r, g, b, 0f);
             recentlyDamaged = false;
         }
+
         if (health <= 0f)
         {
             GetComponent<PlayerRespawn>().Die();
             health = maxHealth;
             hunger = maxhunger;
             thirst = maxThirst;
-
         }
     }
+
     private void UpdateUI()
-    { 
+    {
         healthBar.numberText.text = health.ToString("f0");
-        healthBar.bar.fillAmount = health / 100;
+        healthBar.bar.fillAmount = health / maxHealth;
 
         hungerBar.numberText.text = hunger.ToString("f0");
-        hungerBar.bar.fillAmount = hunger / 100;
+        hungerBar.bar.fillAmount = hunger / maxhunger;
 
         thirstBar.numberText.text = thirst.ToString("f0");
-        thirstBar.bar.fillAmount = thirst / 100;
+        thirstBar.bar.fillAmount = thirst / maxThirst;
+
         if (recentlyDamaged)
         {
             float t = 1f - (health / maxHealth);
             float newAlpha = Mathf.Lerp(minAlpha, maxAlpha, t);
             bloodImage.color = new Color(r, g, b, newAlpha);
         }
-
     }
+
     public void OnTakeDamage()
     {
         lastDamageTime = Time.time;
         recentlyDamaged = true;
     }
+
     public void UpdateStats()
     {
-        //--STATS--//
-        if (health <= 0f)
-            health = 0f;
-        if (health >= maxHealth)
-            health = maxHealth;
+        float delta = Time.deltaTime;
 
-        if (hunger <= 0f)
-            hunger = 0f;
-        if (hunger >= maxhunger)
-            hunger = maxhunger;
+        // Mantener stats en rango válido
+        health = Mathf.Clamp(health, 0f, maxHealth);
+        hunger = Mathf.Clamp(hunger, 0f, maxhunger);
+        thirst = Mathf.Clamp(thirst, 0f, maxThirst);
 
-        if (thirst <= 0f)
-            thirst = 0f;
-        if (thirst >= maxThirst)
-            thirst = maxThirst;
+        // Acumular tiempo
+        hungerTimer += delta;
+        thirstTimer += delta;
+        hungerDamageTimer += delta;
+        thirstDamageTimer += delta;
 
-        //--REDUCTIONS--//
-
-        if (hunger <= 0) {
-            //EVERY 3 SEC//
-            if (Time.time % 10f < Time.deltaTime)
-            {
-                health -= hungerDamage;
-            }
-            health -= hungerDamage * Time.deltaTime;
-        }
-        if (thirst <= 0)
+        // Reducir hambre y sed cada 180 segundos (3 minutos)
+        if (hunger > 0f && hungerTimer >= 180f)
         {
-            //EVERY 3 SEC//
-            if (Time.time % 10f < Time.deltaTime)
-            {
-                health -= thirstDamage;
-            }
-            health -= thirstDamage * Time.deltaTime;
+            hunger -= hungerReduction;
+            hungerTimer = 0f;
         }
 
-        //--DAMAGES--//
-        if(hunger > 0)
+        if (thirst > 0f && thirstTimer >= 180f)
         {
-            //EVERY 5 SEC//
-            if (Time.time % 60f < Time.deltaTime)
-            {
-                hunger -= hungerReduction;
-            }
-            hunger -= hungerReduction * Time.deltaTime;
-        }
-        if (thirst > 0)
-        {
-            //EVERY 5 SEC//
-            if (Time.time % 60f < Time.deltaTime)
-            {
-                thirst -= thirstReduction;
-            }
-            thirst -= thirstReduction * Time.deltaTime;
+            thirst -= thirstReduction;
+            thirstTimer = 0f;
         }
 
+        // Aplicar daño si hambre o sed están en 0, cada 60 segundos (1 minuto)
+        if (hunger <= 0f && hungerDamageTimer >= 60f)
+        {
+            health -= hungerDamage;
+            hungerDamageTimer = 0f;
+        }
+
+        if (thirst <= 0f && thirstDamageTimer >= 60f)
+        {
+            health -= thirstDamage;
+            thirstDamageTimer = 0f;
+        }
     }
 }

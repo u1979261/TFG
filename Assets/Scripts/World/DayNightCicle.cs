@@ -26,20 +26,28 @@ public class DayNightCicle : MonoBehaviour
     public float intensitySpeed = 1f;
 
     [HideInInspector] public bool isNightTime;
+    private bool lastIsNightTime; 
+
+    [Header("Skybox")]
     public Material skyboxMaterial;
     public Color dayTimeSkyColor;
     public Color nightTimeColor;
 
+    [Header("Ambient Sounds")]
+    public AudioClip daySound;
+    public AudioClip nightSound;
+    private AudioSource audioSource;
+
     private void Start()
     {
-        if (!isNightTime)
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
         {
-            sun.GetComponentInChildren<Light>().intensity = dayTimeSunIntensity;
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
-        else
-        {
-            sun.GetComponentInChildren<Light>().intensity = nightTimeSunIntensity;
-        }
+
+        lastIsNightTime = isNightTime;
+        PlayAmbientSound(isNightTime);
     }
 
     private void Update()
@@ -71,6 +79,7 @@ public class DayNightCicle : MonoBehaviour
         {
             timeOfDay = 0;
         }
+
         if (timeOfDay > dayStartTime && timeOfDay < dayEndTime)
         {
             timeOfDay += cycleSpeed * Time.deltaTime;
@@ -81,6 +90,13 @@ public class DayNightCicle : MonoBehaviour
         }
 
         UpdateLighting();
+
+        // Detectar cambio de día/noche y reproducir sonido
+        if (isNightTime != lastIsNightTime)
+        {
+            PlayAmbientSound(isNightTime);
+            lastIsNightTime = isNightTime;
+        }
     }
 
     public void UpdateLighting()
@@ -88,13 +104,15 @@ public class DayNightCicle : MonoBehaviour
         sun.localRotation = Quaternion.Euler((timeOfDay * 360 / cycleDuration), 0, 0);
         isNightTime = timeOfDay < dayStartTime || timeOfDay > dayEndTime;
 
-        if (isNightTime)
-        {
-            RenderSettings.ambientLight = Color.black;
-        }
-        else
-        {
-            RenderSettings.ambientLight = Color.white;
-        }
+        RenderSettings.ambientLight = isNightTime ? Color.black : Color.white;
+    }
+
+    private void PlayAmbientSound(bool night)
+    {
+        if (audioSource == null) return;
+
+        audioSource.clip = night ? nightSound : daySound;
+        audioSource.loop = true;
+        audioSource.Play();
     }
 }
