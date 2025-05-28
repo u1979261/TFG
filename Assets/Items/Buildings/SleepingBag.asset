@@ -10,38 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94cfeba5117d6da48973fe75f9bf47db, type: 3}
-  m_Name: Hatchet
+  m_Name: SleepingBag
   m_EditorClassIdentifier: 
-  ID: 45
-  itemType: 3
-  itemIcon: {fileID: 21300000, guid: 523a6206e67744e46a0787799e3c2693, type: 3}
-  itemName: Metal hatchet
-  itemDescription: Metal hatchet
-  specificDropModel: {fileID: 5939700252830736024, guid: e1816ccbc489f134db407790e65cce61, type: 3}
+  ID: 12
+  itemType: 4
+  itemIcon: {fileID: 21300000, guid: 08051a5fa01f1bb4d8408b66fa7537fb, type: 3}
+  itemName: Sleeping Bag
+  itemDescription: Sleeping Bag
+  specificDropModel: {fileID: 0}
   isStackable: 0
   maxStack: 1
-  toolMultiplier: 2
-  damage: 20
-  range: 1.5
+  toolMultiplier: 1
+  damage: 15
+  range: 300
   horizontalRecoil: 0
   minVerticalRecoil: 0
   maxVerticalRecoil: 0
-  hipSpread: 0
+  hipSpread: 0.04
   aimSpread: 0
-  zoomFOV: 0
+  zoomFOV: 60
   shotgunFire: 0
-  pelletsPerShot: 0
-  magSize: 30
+  pelletsPerShot: 8
+  magSize: 20
   bulletData: {fileID: 0}
-  fireRate: 0.3
-  shootSound: {fileID: 8300000, guid: 8ddc2456b046e1c48979502880155e88, type: 3}
-  reloadSound: {fileID: 8300000, guid: 301e507a6d37e0040b6732ae1aabe7d5, type: 3}
+  fireRate: 0.1
+  shootSound: {fileID: 0}
+  reloadSound: {fileID: 0}
   takeoutSound: {fileID: 0}
   emptySound: {fileID: 0}
-  healthStats: 0
-  thirstStats: 0
-  hungerStats: 0
-  buildReference: {fileID: 0}
+  healthStats: 10
+  thirstStats: 10
+  hungerStats: 10
+  buildReference: {fileID: 7739625566613273594, guid: 7c3ec67f3ec968c4ebf8ccac60bc0254, type: 3}
   isFuel: 0
   outcome: {fileID: 0}
   outcomeAmount: 1

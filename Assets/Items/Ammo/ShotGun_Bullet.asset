@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 3
   itemType: 0
-  itemIcon: {fileID: 21300000, guid: 6fec2e0eecbc9c64aa5f995ee42b214e, type: 3}
-  itemName: Rifle Bullets
-  itemDescription: 5.56 Bullets
+  itemIcon: {fileID: 21300000, guid: aabc8e5ca5adeea47ba9e226e861f1b5, type: 3}
+  itemName: Shotgun Bullet
+  itemDescription: Shotgun Bullet
   specificDropModel: {fileID: 0}
   isStackable: 1
   maxStack: 128

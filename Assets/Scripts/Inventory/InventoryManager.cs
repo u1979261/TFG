@@ -25,6 +25,9 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject CraftingPanel;
 
+    [Header("Default Item")]
+    public ItemSO rockItem;
+
 
 
     [HideInInspector] public Slot[] inventorySlots;
@@ -138,6 +141,12 @@ public class InventoryManager : MonoBehaviour
         }
         inventorySlots = inventorySlots_.ToArray();
         hotBarSlots = hotBarList.ToArray();
+
+        if (rockItem != null)
+        {
+            hotBarSlots[0].AddItemToSlot(rockItem, 1);
+            hotBarSlots[0].UpdateSlot();
+        }
     }
     public void AddItem(Pickup pickUp)
     {

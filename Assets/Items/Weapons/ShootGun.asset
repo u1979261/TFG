@@ -34,9 +34,9 @@ MonoBehaviour:
   magSize: 20
   bulletData: {fileID: 11400000, guid: 74b8de5bda46beb42a745f6a14b616bf, type: 2}
   fireRate: 0.1
-  shootSound: {fileID: 0}
-  reloadSound: {fileID: 0}
-  takeoutSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 9a0dbe6d4b17ee343b02ee0d7a630b2b, type: 3}
+  reloadSound: {fileID: 8300000, guid: e5ef60a958233a445ad44a82e8799822, type: 3}
+  takeoutSound: {fileID: 8300000, guid: df8b4f2944ccae64f961b20b942546ec, type: 3}
   emptySound: {fileID: 0}
   healthStats: 10
   thirstStats: 10

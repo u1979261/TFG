@@ -322,7 +322,6 @@ public class Weapon : MonoBehaviour
             return;
         }
         anim.SetTrigger("Swing");
-
         currentFireRate = 0;
     }
 

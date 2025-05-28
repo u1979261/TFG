@@ -6,6 +6,7 @@ public class ResourceObject : MonoBehaviour
     public DeathType deathType;
     public ResourceDataSO [] resourceData;
     public int hits;
+    private AudioSource audioS;
     public ItemSO [] prefferedTool;
     public float forceDestruction = 100f;
 
@@ -26,6 +27,12 @@ public class ResourceObject : MonoBehaviour
                     GetComponent<Rigidbody>().isKinematic = false;
                     GetComponent<Rigidbody>().useGravity = true;
 
+                    if(GetComponent<Tree>() != null)
+                    {
+                        audioS = GetComponent<AudioSource>();
+                        audioS.PlayOneShot(GetComponent<Tree>().treeSound);
+                    }
+                       
                     GetComponent<Rigidbody>().AddTorque(Vector3.right * 100);
                     Destroy(gameObject, 5f);
                 }

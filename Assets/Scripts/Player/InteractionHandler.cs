@@ -58,7 +58,7 @@ public class InteractionHandler :MonoBehaviour
             Pickup pickup = hitObject.transform.GetComponent<Pickup>();
             Storage storage = hitObject.transform.GetComponent<Storage>();
             Bed bed = hitObject.transform.GetComponent<Bed>();
-            Debug.Log(hitObject.transform.name);
+
 
             if (_playerInput.Player.Interact.WasPressedThisFrame())
             {
@@ -88,7 +88,7 @@ public class InteractionHandler :MonoBehaviour
                 interactText.gameObject.SetActive(true);
                 if (pickup != null)
                 {
-                    interactText.text = $"Pickup x{pickup.stackSize} {pickup.data.itemName}";
+                    interactText.text = $"x{pickup.stackSize} {pickup.data.itemName}";
                 }
                 if (storage != null)
                 {

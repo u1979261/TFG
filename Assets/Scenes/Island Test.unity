@@ -441,6 +441,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8499305555841548255, guid: 6d30b42606c26bc409bd9031b5a1bff5, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -604,8 +608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9b58951d4dac54a87cbf94e5c15d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: fabb8c0d2f926d34d99a5411242e7535, type: 2}
-  stackSize: 10
+  data: {fileID: 11400000, guid: 12abbb29cfc5579449e3214eda6025de, type: 2}
+  stackSize: 100
 --- !u!1 &803228857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,7 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9b58951d4dac54a87cbf94e5c15d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 9f5c6a32448b45f4f8866007a12c406b, type: 2}
+  data: {fileID: 11400000, guid: 99acae652fe10104b97662233be7c66f, type: 2}
   stackSize: 10
 --- !u!1001 &1206108999
 PrefabInstance:
@@ -1524,7 +1528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9b58951d4dac54a87cbf94e5c15d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 9699b8997ca41e14e927abf1c03ae1b2, type: 2}
+  data: {fileID: 11400000, guid: ba58b18681ac78e4abee7b277ff8b939, type: 2}
   stackSize: 10
 --- !u!1001 &1820663672
 PrefabInstance:
@@ -1885,7 +1889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9b58951d4dac54a87cbf94e5c15d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 197756723b5ffe14dac00440f085c5bc, type: 2}
+  data: {fileID: 11400000, guid: da0aeb5411a044143a1f4d398813c449, type: 2}
   stackSize: 10
 --- !u!1001 &1954953431
 PrefabInstance:
@@ -2211,6 +2215,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 545542009149162318, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119903997577462144, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119903997577462144, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593773420499847581, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: rockItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 258317a2637ac7049acc76e9de84e36b, type: 2}
     - target: {fileID: 1593773420499847581, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
       propertyPath: weapons.Array.size
       value: 11
@@ -2223,10 +2243,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1820534844056857092, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2713499010820878533, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2766059952075137907, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159905297831922266, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702027041087024321, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4259980906962323020, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
       propertyPath: pickupSound
       value: 
       objectReference: {fileID: 8300000, guid: 9baa9c0c7a38bbd4e8f305d5aa8c9bee, type: 3}
+    - target: {fileID: 4285354596551823430, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4963620070540129841, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987418765070533131, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5015797982200019762, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -2279,9 +2331,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5670708956491807359, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6212901576672107672, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6477484928898164705, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635552786750396750, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369668042979139458, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8524344862406027777, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877981635284367901, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: m_Volume
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &496988623019456897
+--- !u!1 &5890681157162321851
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8603557638060063097}
-  - component: {fileID: 4476862597555848356}
-  - component: {fileID: 8890527368868618605}
-  - component: {fileID: 3287737270509584208}
-  - component: {fileID: 4197156125126025883}
+  - component: {fileID: 8597851702091933819}
+  - component: {fileID: 8684761340501256792}
+  - component: {fileID: 1806154033430524527}
+  - component: {fileID: 8020255161271763336}
+  - component: {fileID: 7739625566613273594}
   m_Layer: 0
-  m_Name: Sleeping Bag
+  m_Name: Sleeping Bag Reference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8603557638060063097
+--- !u!4 &8597851702091933819
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496988623019456897}
+  m_GameObject: {fileID: 5890681157162321851}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.730829, y: -0.00000047683716, z: 11.390623}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 13.730829, y: -0.00000047683716, z: 10.92}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4476862597555848356
+--- !u!33 &8684761340501256792
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496988623019456897}
+  m_GameObject: {fileID: 5890681157162321851}
   m_Mesh: {fileID: 4300000, guid: 0a2a129c9dd554549bc99c1d8e8f333d, type: 3}
---- !u!23 &8890527368868618605
+--- !u!23 &1806154033430524527
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496988623019456897}
+  m_GameObject: {fileID: 5890681157162321851}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3e302a66b2099e844bb23a753e6f3d3c, type: 2}
+  - {fileID: 2100000, guid: 6609a3d9f5f62ae48bc318fe62aa37de, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,26 +88,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3287737270509584208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496988623019456897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c2357db2dcf13444a63411cdeed28d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnOffset: {x: 0, y: 1, z: 0}
---- !u!65 &4197156125126025883
+--- !u!65 &8020255161271763336
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496988623019456897}
+  m_GameObject: {fileID: 5890681157162321851}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -120,5 +107,19 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.8820596, y: 0.4479741, z: 3.5021453}
-  m_Center: {x: -0.0047933757, y: 0.15210012, z: 0.0047647357}
+  m_Size: {x: 1.8820598, y: 0.29998967, z: 3.5021453}
+  m_Center: {x: -0.0047934055, y: 0.34044406, z: 0.0047647953}
+--- !u!114 &7739625566613273594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890681157162321851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2764198846aebec47b18af06000a7087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildPrefab: {fileID: 4098623543385696559, guid: fba145bc32821ec4caa1351f5c63acd7, type: 3}
+  canBuild: 0
