@@ -8,28 +8,23 @@ public class PlayerRespawn : MonoBehaviour
 
     void Start()
     {
-        // Al iniciar, colocamos al jugador en el punto guardado (o el por defecto)
         Vector3 spawnPos = LoadSpawnPoint();
         transform.position = spawnPos;
     }
-
-    // Llama a este método cuando el jugador “muere”
     public void Die()
     {
-        // Podrías reproducir animación, pantalla negra, delay, etc.
         StartCoroutine(RespawnCoroutine());
     }
 
     private IEnumerator RespawnCoroutine()
     {
+        deathScreenUI.SetActive(true);
         // Teletransporta al jugador al punto de respawn
+        yield return new WaitForSeconds(0.5f);
         Vector3 spawnPos = LoadSpawnPoint();
         transform.position = spawnPos;
-        deathScreenUI.SetActive(true);
-        // Espera un segundo (ajusta a tu gusto)
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
         deathScreenUI.SetActive(false);
-        // Aquí podrías restaurar vida, reproducir animación de “despertar”, etc.
     }
 
     private Vector3 LoadSpawnPoint()
@@ -43,7 +38,6 @@ public class PlayerRespawn : MonoBehaviour
         }
         else
         {
-            // Si nunca hizo click en una cama, usamos el punto por defecto
             return defaultSpawnPoint;
         }
     }

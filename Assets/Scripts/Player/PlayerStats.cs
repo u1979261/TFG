@@ -6,6 +6,7 @@ public class PlayerStats : MonoBehaviour
     [Header("Stats")]
     public float health;
     public float maxHealth = 100f;
+    public bool isDead = false;
 
     [Space]
     public float hunger;
@@ -73,9 +74,6 @@ public class PlayerStats : MonoBehaviour
         if (health <= 0f)
         {
             GetComponent<PlayerRespawn>().Die();
-            health = maxHealth/2;
-            hunger = maxhunger/2;
-            thirst = maxThirst/2;
         }
     }
 

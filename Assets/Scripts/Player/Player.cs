@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
     private CharacterController _player;
+    private WindowHandler _windowHandler;
     private InputSystem_Actions _playerInput;
     private CameraLook _camera;
 
@@ -35,6 +38,10 @@ public class Player : MonoBehaviour
     private float currentRunLenght;
     private float currentWalkLenght;
 
+    private void Start()
+    {
+        _windowHandler = GetComponent<WindowHandler>();
+    }
     private void Awake()
     {
         _player = GetComponent<CharacterController>();
@@ -91,6 +98,16 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(GetComponent<PlayerStats>().health);
+        if (GetComponent<PlayerStats>().health <= 0)
+        {
+            if (!GetComponent<PlayerStats>().isDead)
+            {
+                Debug.Log("Player is dead");
+                Die();
+            }
+            return;
+        }
         if (crouching)
         {
             if (currentCrouchLenght < crouchStepLength)
@@ -156,7 +173,7 @@ public class Player : MonoBehaviour
 
         HandleCrouch();
 
-        // Gravedad y salto correctamente aplicados por frame
+        // Gravedad y salto correctamente aplicados por frame  
         if (_player.isGrounded)
         {
             _yVelocity = 0;
@@ -204,7 +221,7 @@ public class Player : MonoBehaviour
                 surface.surface.footstepSounds != null &&
                 surface.surface.footstepSounds.Length > 0)
             {
-                int i = Random.Range(0, surface.surface.footstepSounds.Length);
+                int i = UnityEngine.Random.Range(0, surface.surface.footstepSounds.Length);
                 return surface.surface.footstepSounds[i];
             }
         }
@@ -212,4 +229,16 @@ public class Player : MonoBehaviour
         return null;
     }
 
+    private void Die()
+    {
+        for (int i = 0; i < _windowHandler.inventory.inventorySlots.Length; i++)
+        {
+            _windowHandler.inventory.inventorySlots[i].Drop();
+        }
+        GetComponent<PlayerStats>().isDead = true;
+        GetComponent<PlayerStats>().health = 100;
+        GetComponent<PlayerStats>().thirst = 100;
+        GetComponent<PlayerStats>().hunger = 100;
+
+    }
 }

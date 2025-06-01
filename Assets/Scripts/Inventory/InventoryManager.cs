@@ -270,7 +270,13 @@ public class InventoryManager : MonoBehaviour
     }
     public void DropItem(Slot slot)
     {
+        if (slot == null || slot.data == null)
+            return;
+
         GameObject modelToDrop = slot.data.specificDropModel != null ? slot.data.specificDropModel : dropModel;
+        if (modelToDrop == null || dropPos == null)
+            return;
+
         Pickup pickup = Instantiate(modelToDrop, dropPos).GetComponent<Pickup>();
         pickup.transform.position = dropPos.position;
         pickup.transform.SetParent(null);
