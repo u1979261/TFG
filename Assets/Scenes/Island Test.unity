@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9b58951d4dac54a87cbf94e5c15d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 12abbb29cfc5579449e3214eda6025de, type: 2}
+  data: {fileID: 11400000, guid: 1198fb02c331d2044a3d6873eef510ee, type: 2}
   stackSize: 100
 --- !u!1 &803228857
 GameObject:
@@ -1729,7 +1729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9b58951d4dac54a87cbf94e5c15d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: ba58b18681ac78e4abee7b277ff8b939, type: 2}
+  data: {fileID: 11400000, guid: 6fa74e0df013f6242bc5bd02ba349ce5, type: 2}
   stackSize: 10
 --- !u!1001 &1820663672
 PrefabInstance:
@@ -1988,7 +1988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9b58951d4dac54a87cbf94e5c15d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: da0aeb5411a044143a1f4d398813c449, type: 2}
+  data: {fileID: 11400000, guid: 46db550ba050696469343aaacf2c7e1e, type: 2}
   stackSize: 10
 --- !u!1001 &1954953431
 PrefabInstance:
@@ -2177,6 +2177,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2468810205993393713, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
+      propertyPath: damageSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c5ba016d872d3ee41b4969101c8dcb02, type: 3}
     - target: {fileID: 2766059952075137907, guid: b70c91bfbf7dc974da53a48b2015ead1, type: 3}
       propertyPath: m_IsActive
       value: 1

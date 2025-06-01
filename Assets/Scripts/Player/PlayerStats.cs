@@ -45,6 +45,8 @@ public class PlayerStats : MonoBehaviour
     private float hungerDamageTimer = 0f;
     private float thirstDamageTimer = 0f;
 
+    public AudioClip damageSound;
+
     private void Start()
     {
         health = maxHealth;
@@ -98,6 +100,7 @@ public class PlayerStats : MonoBehaviour
 
     public void OnTakeDamage()
     {
+        GetComponent<AudioSource>().PlayOneShot(damageSound);
         lastDamageTime = Time.time;
         recentlyDamaged = true;
     }
