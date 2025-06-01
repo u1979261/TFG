@@ -129,7 +129,6 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(shootPoint.position, shootDir, out hit, weaponData.range, shootableLayers))
         {
-            //GameObject bulletHole = Instantiate(bulletPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
             AnimalAI animal = hit.transform.GetComponent<AnimalAI>();
             if (animal != null)
             {
@@ -146,7 +145,6 @@ public class Weapon : MonoBehaviour
         }
 
         anim.CrossFadeInFixedTime("Shoot_BASE", 0.015f);
-        //GetComponentInParent<CameraLook>().RecoilCamera(Random.Range(-weaponData.horizontalRecoil, weaponData.horizontalRecoil), Random.Range(weaponData.minVerticalRecoil, weaponData.maxVerticalRecoil));
         audioS.PlayOneShot(weaponData.shootSound);
 
         currentFireRate = 0;
@@ -325,6 +323,23 @@ public class Weapon : MonoBehaviour
         currentFireRate = 0;
     }
 
+    public void ExecuteHit()
+    {
+        RaycastHit hit;
+        GetComponentInParent<CameraShake>().GetComponent<Animator>().SetTrigger("Shake");
+        if (Physics.SphereCast(shootPoint.position, 0.2f, shootPoint.forward, out hit, weaponData.range, shootableLayers))
+        {
+            ResourceObject resourceObj = hit.transform.GetComponent<ResourceObject>();
+            ResourceExtenssion resourceExt = hit.transform.GetComponent<ResourceExtenssion>();
+
+            if (resourceObj != null)
+                resourceObj.Recolect(weaponData, GetComponentInParent<WindowHandler>().inventory);
+
+            if (resourceExt != null)
+                resourceExt.Recolect(weaponData, GetComponentInParent<WindowHandler>().inventory);
+
+        }
+    }
     public void CheckForHit() 
     {
         RaycastHit hit;
@@ -347,24 +362,7 @@ public class Weapon : MonoBehaviour
     {
         anim.SetTrigger("Hit");
     }   
-
-    public void ExecuteHit()
-    {
-        RaycastHit hit;
-        GetComponentInParent<CameraShake>().GetComponent<Animator>().SetTrigger("Shake");
-        if (Physics.SphereCast(shootPoint.position, 0.2f, shootPoint.forward, out hit, weaponData.range, shootableLayers))
-        {
-            ResourceObject resourceObj = hit.transform.GetComponent<ResourceObject>();
-            ResourceExtenssion resourceExt = hit.transform.GetComponent<ResourceExtenssion>();
-
-            if (resourceObj != null)
-                resourceObj.Recolect(weaponData, GetComponentInParent<WindowHandler>().inventory);
-
-            if (resourceExt != null)
-                resourceExt.Recolect(weaponData, GetComponentInParent<WindowHandler>().inventory);
-
-        }
-    }
+    
 
     #endregion
     public void UpdateAnimations()

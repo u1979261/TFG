@@ -120,6 +120,7 @@ public class InventoryManager : MonoBehaviour
         }
         inventorySlots = inventorySlots_.ToArray();
     }
+
     private void GenerateSlotsHotBar()
     {
         List<Slot> inventorySlots_ = new List<Slot>();
@@ -280,6 +281,17 @@ public class InventoryManager : MonoBehaviour
         slot.Clean();
     }
 
+    public void DropAllItems()
+    {
+        if (inventorySlots == null) return;
+        foreach (Slot slot in inventorySlots)
+        {
+            if (slot != null && slot.data != null && slot.stackSize > 0)
+            {
+                DropItem(slot);
+            }
+        }
+    }
 
     public void DragDrop(Slot from, Slot to, bool isRightClick, bool isMiddleClick)
     {

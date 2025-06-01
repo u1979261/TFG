@@ -2,8 +2,9 @@ using UnityEngine;
 using System.Collections;
 public class PlayerRespawn : MonoBehaviour
 {
+    public GameObject deathScreenUI;
     // Punto por defecto si no hay cama guardada
-    public Vector3 defaultSpawnPoint = new Vector3(0, 1, 0);
+    public Vector3 defaultSpawnPoint = new Vector3(768.87323f, 23.6694355f, 372.422333f);
 
     void Start()
     {
@@ -21,13 +22,13 @@ public class PlayerRespawn : MonoBehaviour
 
     private IEnumerator RespawnCoroutine()
     {
-        // Espera un segundo (ajusta a tu gusto)
-        yield return new WaitForSeconds(1f);
-
         // Teletransporta al jugador al punto de respawn
         Vector3 spawnPos = LoadSpawnPoint();
         transform.position = spawnPos;
-
+        deathScreenUI.SetActive(true);
+        // Espera un segundo (ajusta a tu gusto)
+        yield return new WaitForSeconds(3f);
+        deathScreenUI.SetActive(false);
         // Aquí podrías restaurar vida, reproducir animación de “despertar”, etc.
     }
 
@@ -38,7 +39,7 @@ public class PlayerRespawn : MonoBehaviour
             float x = PlayerPrefs.GetFloat("SpawnX");
             float y = PlayerPrefs.GetFloat("SpawnY");
             float z = PlayerPrefs.GetFloat("SpawnZ");
-            return new Vector3(x, y, z);
+            return new Vector3(768.87323f, 23.6694355f, 372.422333f);
         }
         else
         {

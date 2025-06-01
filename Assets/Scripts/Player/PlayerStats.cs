@@ -71,9 +71,9 @@ public class PlayerStats : MonoBehaviour
         if (health <= 0f)
         {
             GetComponent<PlayerRespawn>().Die();
-            health = maxHealth;
-            hunger = maxhunger;
-            thirst = maxThirst;
+            health = maxHealth/2;
+            hunger = maxhunger/2;
+            thirst = maxThirst/2;
         }
     }
 
@@ -130,7 +130,7 @@ public class PlayerStats : MonoBehaviour
             thirstTimer = 0f;
         }
 
-        // Aplicar daño si hambre o sed están en 0, cada 60 segundos (1 minuto)
+        // Aplicar daño cada 60 segundos (1 minuto)
         if (hunger <= 0f && hungerDamageTimer >= 60f)
         {
             health -= hungerDamage;

@@ -18,7 +18,7 @@ MonoBehaviour:
   itemName: Campfire
   itemDescription: Campfire
   specificDropModel: {fileID: 0}
-  isStackable: 0
+  isStackable: 1
   maxStack: 1
   toolMultiplier: 1
   damage: 15
@@ -41,7 +41,7 @@ MonoBehaviour:
   healthStats: 10
   thirstStats: 10
   hungerStats: 10
-  buildReference: {fileID: 5173954523566050149, guid: 220db9cdc2cd92447bd3efd1c14be4f9, type: 3}
+  buildReference: {fileID: 3312712277646130535, guid: c68cfa189c7036843b4b891492551f88, type: 3}
   isFuel: 0
   outcome: {fileID: 0}
   outcomeAmount: 1

@@ -70,6 +70,56 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
             weaponEquippedOn.UnEquip();
         }
     }
+    public void Use()
+    {
+        if (data == null) return;
+
+        // Si no es un objeto de construcción, desactiva la construcción activa
+        if (inventory.building.slotInUse != null && data.itemType != ItemSO.ItemType.Building)
+        {
+            inventory.building.slotInUse = null;
+
+            if (inventory.building.buildReference != null)
+            {
+                Destroy(inventory.building.buildReference.gameObject);
+            }
+        }
+
+        if (data.itemType == ItemSO.ItemType.Weapon || data.itemType == ItemSO.ItemType.MeleeWeapon)
+        {
+            bool shouldJustUnequip = false;
+
+            for (int i = 0; i < inventory.weapons.Length; i++)
+            {
+                if (inventory.weapons[i].gameObject.activeSelf)
+                {
+                    if (inventory.weapons[i].slotEquippedOn == this)
+                    {
+                        shouldJustUnequip = true;
+                    }
+                    inventory.weapons[i].UnEquip();
+                }
+            }
+
+            if (shouldJustUnequip) return;
+
+            for (int i = 0; i < inventory.weapons.Length; i++)
+            {
+                if (inventory.weapons[i].weaponData == data)
+                {
+                    inventory.weapons[i].Equip(this);
+                }
+            }
+        }
+        else if (data.itemType == ItemSO.ItemType.Consumable)
+        {
+            Consume();
+        }
+        else if (data.itemType == ItemSO.ItemType.Building)
+        {
+            Build();
+        }
+    }
 
     public void Clean()
     {
@@ -131,56 +181,7 @@ public class Slot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
         }
     }
 
-    public void Use()
-    {
-        if (data == null) return;
-
-        // Si no es un objeto de construcción, desactiva la construcción activa
-        if (inventory.building.slotInUse != null && data.itemType != ItemSO.ItemType.Building)
-        {
-            inventory.building.slotInUse = null;
-
-            if (inventory.building.buildReference != null)
-            {
-                Destroy(inventory.building.buildReference.gameObject);
-            }
-        }
-
-        if (data.itemType == ItemSO.ItemType.Weapon || data.itemType == ItemSO.ItemType.MeleeWeapon)
-        {
-            bool shouldJustUnequip = false;
-
-            for (int i = 0; i < inventory.weapons.Length; i++)
-            {
-                if (inventory.weapons[i].gameObject.activeSelf)
-                {
-                    if (inventory.weapons[i].slotEquippedOn == this)
-                    {
-                        shouldJustUnequip = true;
-                    }
-                    inventory.weapons[i].UnEquip();
-                }
-            }
-
-            if (shouldJustUnequip) return;
-
-            for (int i = 0; i < inventory.weapons.Length; i++)
-            {
-                if (inventory.weapons[i].weaponData == data)
-                {
-                    inventory.weapons[i].Equip(this);
-                }
-            }
-        }
-        else if (data.itemType == ItemSO.ItemType.Consumable)
-        {
-            Consume();
-        }
-        else if (data.itemType == ItemSO.ItemType.Building)
-        {
-            Build();
-        }
-    }
+    
 
 
     public void Build()
