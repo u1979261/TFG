@@ -24,7 +24,7 @@ public class BuildingHandler : MonoBehaviour
         { "DoorWay",    new Vector2(0.21f, 0.101f) },
         { "Floor",      new Vector2(0.5f, 0f) },
         { "Furnace",    new Vector2(0f, 0f) },
-        { "Campfire",   new Vector2(0.26f, 0.104f) },
+        { "Campfire",   new Vector2(0f, 0f) },
         { "Sleeping",   new Vector2(0f, 0f)},
     };
 

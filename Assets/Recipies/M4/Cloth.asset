@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 102840b9215e2dc4eb267027c06c5ae5, type: 3}
-  m_Name: Stone
+  m_Name: Cloth
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 1368f086f934d034693461b772002dd9, type: 2}
-  amount: 20
+  data: {fileID: 11400000, guid: 37a963c56deccb44d98b04f6ff3cd7fa, type: 2}
+  amount: 50

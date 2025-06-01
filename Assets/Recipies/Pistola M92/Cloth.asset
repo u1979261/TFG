@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 102840b9215e2dc4eb267027c06c5ae5, type: 3}
-  m_Name: Wood
+  m_Name: Cloth
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: a6b39b0adf7d7224dbfe388af396a962, type: 2}
+  data: {fileID: 11400000, guid: 37a963c56deccb44d98b04f6ff3cd7fa, type: 2}
   amount: 50

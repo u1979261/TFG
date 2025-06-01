@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Cloth
   m_EditorClassIdentifier: 
   items: {fileID: 11400000, guid: 37a963c56deccb44d98b04f6ff3cd7fa, type: 2}
-  amount: 5
+  amount: 20

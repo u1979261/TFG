@@ -141,6 +141,7 @@ MonoBehaviour:
   deathType: 1
   resourceData:
   - {fileID: 11400000, guid: 87ec15377843fe1438d6a5103d9f583a, type: 2}
+  - {fileID: 11400000, guid: c31fd762d0606a749bbf5e8525373385, type: 2}
   hits: 10
   prefferedTool:
   - {fileID: 11400000, guid: 258317a2637ac7049acc76e9de84e36b, type: 2}

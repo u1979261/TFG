@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 27
   itemType: 3
-  itemIcon: {fileID: 21300000, guid: 3d3254e12fcfca649abe4606bcb7e62a, type: 3}
+  itemIcon: {fileID: 21300000, guid: 893059ff589d29d4d8cc754229036a9e, type: 3}
   itemName: Rock
   itemDescription: Rock
   specificDropModel: {fileID: 2503653781863398204, guid: 36b82fa75ed45c94cbe9606cf41a40b7, type: 3}

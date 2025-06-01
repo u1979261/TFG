@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18a8d3b6b3f49884c8413f95f85c2196, type: 3}
-  m_Name: Metal Pickaxe
+  m_Name: Rock
   m_EditorClassIdentifier: 
-  recipieIcon: {fileID: 21300000, guid: 6e9399548222bf64e86bc10e8b6c32e7, type: 3}
-  recipieName: Iron Pickaxe
+  recipieIcon: {fileID: 21300000, guid: 893059ff589d29d4d8cc754229036a9e, type: 3}
+  recipieName: Rock
   requirements:
-  - {fileID: 11400000, guid: d3d10ae7a73179141bf132e600e67fff, type: 2}
-  - {fileID: 11400000, guid: 093393ff040b6504aad1f27857032025, type: 2}
-  craftingTime: 10
-  output: {fileID: 11400000, guid: 6fa74e0df013f6242bc5bd02ba349ce5, type: 2}
+  - {fileID: 11400000, guid: ddc788069e627944fa7aac43c0ac349f, type: 2}
+  craftingTime: 20
+  output: {fileID: 11400000, guid: 258317a2637ac7049acc76e9de84e36b, type: 2}
   outputAmount: 1

@@ -110,6 +110,7 @@ MonoBehaviour:
   deathType: 1
   resourceData:
   - {fileID: 11400000, guid: 87ec15377843fe1438d6a5103d9f583a, type: 2}
+  - {fileID: 11400000, guid: f8c2ef1982d8ee54cb61025b702a5f4c, type: 2}
   hits: 10
   prefferedTool:
   - {fileID: 11400000, guid: 258317a2637ac7049acc76e9de84e36b, type: 2}
@@ -126,11 +127,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.84, y: 2.155, z: 0.715}
+  m_Extents: {x: 0.29, y: 0.475, z: 0.27}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 1.6, z: 0}
+  m_Center: {x: 0, y: 0.22, z: 0}
   m_TimeToStationary: 0.5
 --- !u!54 &6705448756542429223
 Rigidbody:
