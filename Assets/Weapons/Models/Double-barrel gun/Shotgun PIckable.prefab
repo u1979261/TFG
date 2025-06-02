@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 6119230861407464178}
   - component: {fileID: 6128557291343639706}
   - component: {fileID: 6578216522891931570}
+  - component: {fileID: -5965366295194067073}
   m_Layer: 0
   m_Name: Shotgun PIckable
   m_TagString: Untagged
@@ -270,3 +271,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: a5fcdd6bd1922a8479c0c5dcfb4457d5, type: 2}
   stackSize: 1
+--- !u!114 &-5965366295194067073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7737518233398051808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266e3921c6ca7e943a8ec8295d10a6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 21
+  instantiate: 1
+  itemID: 0
+  itemStack: 0
+  StorageItemsID: 
+  StorageItemsStacks: 

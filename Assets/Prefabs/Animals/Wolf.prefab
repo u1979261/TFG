@@ -1691,6 +1691,7 @@ MonoBehaviour:
   maxChaseDistance: 20
   minAttackDistance: 3
   maxAttackDistance: 6
+  audioDamage: {fileID: 8300000, guid: 3ffec51b9934d384c991db70b8ec4799, type: 3}
   wanderWaitTime: 7
   canMoveWhileAttacking: 0
   walkSpeed: 2
@@ -1756,7 +1757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathType: 0
   resourceData:
-  - {fileID: 11400000, guid: f22a8c63c80969f4e9b03a2781136746, type: 2}
+  - {fileID: 11400000, guid: 29d8777f9fe74e94bae6c907a2d44bfa, type: 2}
   - {fileID: 11400000, guid: fded78078feb9bb48bcc14adbb5ec7da, type: 2}
   - {fileID: 11400000, guid: c31fd762d0606a749bbf5e8525373385, type: 2}
   hits: 5
@@ -1764,6 +1765,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e57eeaf093ff1dd4fa3efd80778de030, type: 2}
   - {fileID: 11400000, guid: 46db550ba050696469343aaacf2c7e1e, type: 2}
   - {fileID: 11400000, guid: 258317a2637ac7049acc76e9de84e36b, type: 2}
+  - {fileID: 11400000, guid: 1f39013d5e3bdcf45ab4c254751df62e, type: 2}
   forceDestruction: 100
 --- !u!65 &4254145896573237495
 BoxCollider:

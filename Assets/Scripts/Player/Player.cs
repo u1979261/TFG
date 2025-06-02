@@ -103,7 +103,6 @@ public class Player : MonoBehaviour
         {
             if (!GetComponent<PlayerStats>().isDead)
             {
-                Debug.Log("Player is dead");
                 Die();
             }
             return;
@@ -139,7 +138,18 @@ public class Player : MonoBehaviour
             }
         }
     }
+    private void Die()
+    {
+        for (int i = 0; i < _windowHandler.inventory.inventorySlots.Length; i++)
+        {
+            _windowHandler.inventory.inventorySlots[i].Drop();
+        }
+        GetComponent<PlayerStats>().isDead = true;
+        GetComponent<PlayerStats>().health = 100;
+        GetComponent<PlayerStats>().thirst = 100;
+        GetComponent<PlayerStats>().hunger = 100;
 
+    }
     private void FixedUpdate()
     {
         HandleMovement();
@@ -229,16 +239,5 @@ public class Player : MonoBehaviour
         return null;
     }
 
-    private void Die()
-    {
-        for (int i = 0; i < _windowHandler.inventory.inventorySlots.Length; i++)
-        {
-            _windowHandler.inventory.inventorySlots[i].Drop();
-        }
-        GetComponent<PlayerStats>().isDead = true;
-        GetComponent<PlayerStats>().health = 100;
-        GetComponent<PlayerStats>().thirst = 100;
-        GetComponent<PlayerStats>().hunger = 100;
 
-    }
 }

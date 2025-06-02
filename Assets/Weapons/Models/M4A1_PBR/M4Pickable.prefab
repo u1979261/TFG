@@ -1443,6 +1443,7 @@ GameObject:
   - component: {fileID: 8966359135394889959}
   - component: {fileID: 8279414082657850251}
   - component: {fileID: 8796878507691253880}
+  - component: {fileID: -1099857121799360492}
   m_Layer: 0
   m_Name: M4Pickable
   m_TagString: Untagged
@@ -1542,6 +1543,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.04852295, y: 0.29684353, z: 0.90870667}
   m_Center: {x: -0.0024108887, y: 0.033285618, z: 0.060447693}
+--- !u!114 &-1099857121799360492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5438566914975819340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266e3921c6ca7e943a8ec8295d10a6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 17
+  instantiate: 1
+  itemID: 0
+  itemStack: 0
+  StorageItemsID: 
+  StorageItemsStacks: 
 --- !u!1 &5620039501683407271
 GameObject:
   m_ObjectHideFlags: 0

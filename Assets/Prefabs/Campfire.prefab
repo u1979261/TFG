@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7696509143625960043}
   - component: {fileID: 8072540147513688148}
   - component: {fileID: 7389850495285090103}
+  - component: {fileID: 7992472916179090589}
   m_Layer: 0
   m_Name: Campfire
   m_TagString: Untagged
@@ -151,6 +152,24 @@ MonoBehaviour:
   fire: {fileID: 5888235328200829734}
   coalItem: {fileID: 11400000, guid: ca775871170fa1d41af79f7d9466929e, type: 2}
   coalAmountPerFuel: 1
+--- !u!114 &7992472916179090589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2963052100614136367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266e3921c6ca7e943a8ec8295d10a6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 14
+  instantiate: 1
+  itemID: 0
+  itemStack: 0
+  StorageItemsID: 
+  StorageItemsStacks: 
 --- !u!1 &4704153855317913668
 GameObject:
   m_ObjectHideFlags: 0

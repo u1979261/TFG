@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 7332738637378584078}
   - component: {fileID: 1239501582790507778}
   - component: {fileID: 2993378575210896837}
+  - component: {fileID: 4267581012334145316}
   m_Layer: 0
   m_Name: Hatchet Pickable
   m_TagString: Untagged
@@ -300,5 +301,23 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.5550537, y: 0.26498795, z: 0.7312012}
-  m_Center: {x: 0.074157715, y: 0.01414299, z: -0.40985107}
+  m_Size: {x: 4.5550537, y: 0.45298576, z: 0.7312012}
+  m_Center: {x: 0.074157715, y: 0.1081419, z: -0.40985107}
+--- !u!114 &4267581012334145316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939700252830736024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266e3921c6ca7e943a8ec8295d10a6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 15
+  instantiate: 1
+  itemID: 0
+  itemStack: 0
+  StorageItemsID: 
+  StorageItemsStacks: 

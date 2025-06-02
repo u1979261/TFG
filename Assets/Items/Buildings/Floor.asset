@@ -19,7 +19,7 @@ MonoBehaviour:
   itemDescription: Floor
   specificDropModel: {fileID: 0}
   isStackable: 1
-  maxStack: 100
+  maxStack: 10
   toolMultiplier: 1
   damage: 15
   range: 300

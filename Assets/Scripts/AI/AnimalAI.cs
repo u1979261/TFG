@@ -17,6 +17,8 @@ public class AnimalAI : MonoBehaviour
     public float maxChaseDistance;
     public float minAttackDistance = 1.5f;
     public float maxAttackDistance = 2.5f;
+    public AudioClip audioDamage;
+    private AudioSource audioSource;
 
     [Header("Movement")]
     private float currentWanderTime;
@@ -36,6 +38,7 @@ public class AnimalAI : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         currentWanderTime = wanderWaitTime;
@@ -166,9 +169,9 @@ public class AnimalAI : MonoBehaviour
 
     public void FinishAttack()
     {
+        audioSource.PlayOneShot(audioDamage);
         if (Vector3.Distance(target.position, transform.position) <= maxAttackDistance)
         {
-            //target.GetComponent<PlayerStats>().Damage();
             target.GetComponent<PlayerStats>().health -= damage;
             target.GetComponent<PlayerStats>().OnTakeDamage();
         }

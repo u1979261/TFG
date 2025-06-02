@@ -18,8 +18,8 @@ MonoBehaviour:
   itemName: StorageBox
   itemDescription: StorageBox
   specificDropModel: {fileID: 0}
-  isStackable: 1
-  maxStack: 100
+  isStackable: 0
+  maxStack: 1
   toolMultiplier: 1
   damage: 15
   range: 300
